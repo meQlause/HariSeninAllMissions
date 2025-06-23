@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+  <header>
+    <img src="assets/pictures/Logo.png" alt="Logo videobelajar" />
+  </header>
+
+  <main>
+    <form class="login-form">
+      <div class="login-form-content">
+        <h2>Masuk ke Akun</h2>
+        <p>Yuk lanjutin belajarmu di videobelajar.</p>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">E-mail <span class="required">*</span></label>
+        <input type="email" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Kata Sandi <span class="required">*</span></label>
+        <div class="password-wrapper">
+          <input type="password" required />
+          <span class="toggle-password" onclick="togglePassword()">
+            <img id="toggle-icon" src="assets/pictures/mdi_eye-off.png" alt="Show password" />
+          </span>
+        </div>
+      </div>
+
+      <a class="lupa-password" href="#">Lupa password?</a>
+
+      <button class="btn btn-login" type="submit">Masuk</button>
+      <button class="btn btn-register" type="submit">Daftar</button>
+
+      <div class="divider">
+        <span>atau</span>
+      </div>
+
+      <button class="btn btn-google" type="submit">
+        <img src="assets/pictures/logos_google-icon.png" alt="Google logo" />
+        Masuk Dengan Google
+      </button>
+    </form>
+  </main>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
