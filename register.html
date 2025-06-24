@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login Page</title>
+  <title>Register</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -13,16 +13,37 @@
     <img src="assets/pictures/Logo.png" alt="Logo videobelajar" />
   </header>
 
-  <main class="login">
+  <main class="register">
     <form class="form">
       <div class="form-content">
-        <h2>Masuk ke Akun</h2>
-        <p>Yuk lanjutin belajarmu di videobelajar.</p>
+        <h2>Pendaftaran Aku</h2>
+        <p>Yuk, daftarkan akunmu sekarang juga.</p>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Nama Lengkap <span class="required">*</span></label>
+        <input type="email" required />
       </div>
 
       <div class="form-group">
         <label class="form-label">E-mail <span class="required">*</span></label>
         <input type="email" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">No. Hp <span class="required">*</span></label>
+          <div class="phone-number">
+            <img class="flag" id="flag" src="assets/pictures/indonesias-flag.png" alt="Flag" />
+            <div class="select-wrapper">
+              <select id="country-code">
+                <option value="+62" data-flag="assets/pictures/indonesias-flag.png">+62</option>
+                <option value="+60" data-flag="assets/pictures/malaysias-flag.png">+60</option>
+                <option value="+65" data-flag="assets/pictures/singapores-flag.png">+65</option>
+              </select>
+              <img src="https://api.iconify.design/heroicons:chevron-down.svg" class="custom-arrow" />
+            </div>
+            <input type="number" required />
+        </div>
       </div>
 
       <div class="form-group">
@@ -34,6 +55,17 @@
           </span>
         </div>
       </div>
+
+      <div class="form-group">
+        <label class="form-label">Konfirmasi Kata Sandi <span class="required">*</span></label>
+        <div class="password-wrapper">
+          <input type="password" required />
+          <span class="toggle-password" onclick="togglePassword()">
+            <img id="toggle-icon" src="assets/pictures/mdi_eye-off.png" alt="Show password" />
+          </span>
+        </div>
+      </div>
+
 
       <a class="lupa-password" href="#">Lupa password?</a>
 
@@ -48,6 +80,7 @@
         <img src="assets/pictures/logos_google-icon.png" alt="Google logo" />
         Masuk Dengan Google
       </button>
+    
     </form>
   </main>
 

@@ -26,17 +26,26 @@ header img {
   height: 60px;
 }
 
-main {
+main.login {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: calc(100vh - 80px);
+  align-items: flex-start;
+  padding: 50px 0px 50px 0px;
+  max-height: 100vh;
 }
 
-.login-form {
+main.register {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px 0px 50px 0px;
+  min-height: 100vh;
+}
+
+.form {
   background-color: var(--card-bg);
   width: 100%;
-  max-width: 450px;
+  max-width: 560px;
   padding: 30px;
   margin-left: 20px; 
   margin-right: 20px; 
@@ -44,20 +53,22 @@ main {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.login-form-content {
+.form-content {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-.login-form-content h2 {
+.form-content h2 {
   margin: 5px 0;
   font-family: 'DM Sans', sans-serif;
 }
 
-.login-form-content p {
+.form-content p {
   color: #333;
   margin: 5px 0;
 }
+
+
 .form-group {
   margin-bottom: 15px;
 }
@@ -76,6 +87,7 @@ main {
 
 input[type="text"],
 input[type="email"],
+input[type="number"],
 input[type="password"] {
   width: 100%;
   padding: 10px;
@@ -85,9 +97,67 @@ input[type="password"] {
   box-sizing: border-box;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+img.flag {
+  background-color: #F4F5FA;
+  padding: 10px 8px 10px 8px;
+  width: 50px;
+  height: 42px;
+  border: 1px solid var(--border-color);
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+  max-width: 5.2vh;
+}
+
+.phone-number {
+  position: relative;
+  display: flex;  
+  flex-direction: row; 
+}
+
+.select-wrapper {
+  position: relative;
+  display: flex;
+  width: 160px;
+  margin-right: 10px;
+}
+
+.select-wrapper select {
+  width: 100%;
+  padding: 10px;
+  padding-right: 30px;
+  font-size: 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 0 5px 5px 0;
+  background-color: white;
+}
+
+.select-wrapper .custom-arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  pointer-events: none; 
+
+  transform: translateY(-50%);
+}
+
 .password-wrapper {
   position: relative;
 }
+
 .password-wrapper input {
   padding-right: 40px;
 }
