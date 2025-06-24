@@ -16,22 +16,22 @@
   <main class="register">
     <form class="form">
       <div class="form-content">
-        <h2>Pendaftaran Aku</h2>
+        <h2>Pendaftaran Akun</h2>
         <p>Yuk, daftarkan akunmu sekarang juga.</p>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Nama Lengkap <span class="required">*</span></label>
-        <input type="text" required />
+        <label class="form-label" for="fullname-input">Nama Lengkap <span class="required">*</span></label>
+        <input type="text" id="fullname-input" required />
       </div>
 
       <div class="form-group">
-        <label class="form-label">E-mail <span class="required">*</span></label>
-        <input type="email" required />
+        <label class="form-label" for="email-input">E-mail <span class="required">*</span></label>
+        <input type="email" id="email-input" required />
       </div>
 
       <div class="form-group">
-        <label class="form-label">No. Hp <span class="required">*</span></label>
+        <label class="form-label" for="phone-input">No. Hp <span class="required">*</span></label>
           <div class="phone-number">
             <img class="flag" id="flag" src="assets/pictures/indonesias-flag.png" alt="Flag" />
             <div class="select-wrapper">
@@ -42,41 +42,41 @@
               </select>
               <img src="https://api.iconify.design/heroicons:chevron-down.svg" class="custom-arrow" />
             </div>
-            <input type="number" required />
+            <input type="number" id="phone-input" required />
         </div>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Kata Sandi <span class="required">*</span></label>
+        <label class="form-label" for="password-input">Kata Sandi <span class="required">*</span></label>
         <div class="password-wrapper">
-          <input type="password" class="pass1" required />
-          <span class="toggle-password" onclick="togglePassword('pass1', 'toggle-icon1')">
+          <input type="password" id="password-input" class="pass1" required />
+          <button type="button" class="toggle-password">
             <img id="toggle-icon1" src="assets/pictures/mdi_eye-off.png" alt="Show password" />
-          </span>
+          </button>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Konfirmasi Kata Sandi <span class="required">*</span></label>
+        <label class="form-label" for="confirm-password-input">Konfirmasi Kata Sandi <span class="required">*</span></label>
         <div class="password-wrapper">
-          <input type="password"class="pass2" required />
-          <span class="toggle-password2" onclick="togglePassword('pass2', 'toggle-icon2')">
+          <input type="password" id="confirm-password-input" class="pass2" required />
+          <button type="button" class="toggle-password">
             <img id="toggle-icon2" src="assets/pictures/mdi_eye-off.png" alt="Show password" />
-          </span>
+          </button>
         </div>
       </div>
 
 
       <a class="lupa-password" href="#">Lupa password?</a>
 
-      <button class="btn btn-login" type="submit">Masuk</button>
+      <button class="btn btn-login type="submit">Masuk</button>
       <button class="btn btn-register" type="submit">Daftar</button>
 
       <div class="divider">
         <span>atau</span>
       </div>
 
-      <button class="btn btn-google" type="submit">
+      <button class="btn btn-google" type="button">
         <img src="assets/pictures/logos_google-icon.png" alt="Google logo" />
         Masuk Dengan Google
       </button>
