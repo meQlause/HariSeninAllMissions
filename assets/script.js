@@ -8,9 +8,9 @@ select.addEventListener('change', function () {
 });
 
 
-function togglePassword() {
-  const input = document.querySelector('.password-wrapper input');
-  const icon = document.getElementById('toggle-icon');
+function togglePassword(cl, cl1) {
+  const input = document.querySelector(`.password-wrapper input.${cl}`);
+  const icon = document.getElementById(cl1);
   
   if (input.type === "password") {
     input.type = "text";

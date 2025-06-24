@@ -19,10 +19,10 @@
         <h2>Pendaftaran Aku</h2>
         <p>Yuk, daftarkan akunmu sekarang juga.</p>
       </div>
-      
+
       <div class="form-group">
         <label class="form-label">Nama Lengkap <span class="required">*</span></label>
-        <input type="email" required />
+        <input type="text" required />
       </div>
 
       <div class="form-group">
@@ -49,9 +49,9 @@
       <div class="form-group">
         <label class="form-label">Kata Sandi <span class="required">*</span></label>
         <div class="password-wrapper">
-          <input type="password" required />
-          <span class="toggle-password" onclick="togglePassword()">
-            <img id="toggle-icon" src="assets/pictures/mdi_eye-off.png" alt="Show password" />
+          <input type="password" class="pass1" required />
+          <span class="toggle-password" onclick="togglePassword('pass1', 'toggle-icon1')">
+            <img id="toggle-icon1" src="assets/pictures/mdi_eye-off.png" alt="Show password" />
           </span>
         </div>
       </div>
@@ -59,9 +59,9 @@
       <div class="form-group">
         <label class="form-label">Konfirmasi Kata Sandi <span class="required">*</span></label>
         <div class="password-wrapper">
-          <input type="password" required />
-          <span class="toggle-password" onclick="togglePassword()">
-            <img id="toggle-icon" src="assets/pictures/mdi_eye-off.png" alt="Show password" />
+          <input type="password"class="pass2" required />
+          <span class="toggle-password2" onclick="togglePassword('pass2', 'toggle-icon2')">
+            <img id="toggle-icon2" src="assets/pictures/mdi_eye-off.png" alt="Show password" />
           </span>
         </div>
       </div>

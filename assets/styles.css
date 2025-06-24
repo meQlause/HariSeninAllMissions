@@ -162,7 +162,7 @@ img.flag {
   padding-right: 40px;
 }
 
-.toggle-password {
+[class^="toggle-password"] {
   position: absolute;
   right: 10px;
   top: 50%;
@@ -172,7 +172,7 @@ img.flag {
   cursor: pointer;
 }
 
-.toggle-password img {
+[class^="toggle-password"] img {
   width: 100%;
   height: 100%;
 }
