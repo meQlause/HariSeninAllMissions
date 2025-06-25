@@ -345,7 +345,6 @@ footer .footer-content {
 footer .watermark {
   display: flex;
   flex-direction: row;
-  padding: 20px 0;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
@@ -356,6 +355,8 @@ footer .socials {
   display: flex;
   flex-direction: row;
   gap: 15px;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 footer .footer-item img {
@@ -466,8 +467,11 @@ footer .footer-item img {
   footer .watermark{
     display: flex;
     flex-direction: column-reverse;
-    padding: 10px;
-    margin: 0 10px;
+  }
+
+  footer .socials, footer p {
+    margin-right: 20px;
+    margin-left: 20px;
   }
 
   footer .footer-item {
