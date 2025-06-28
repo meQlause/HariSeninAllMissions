@@ -1,176 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add New Task - TaskFlow</title>
-    <link href="assets/styles.css" rel="stylesheet" />
-  </head>
-  <body class="bg-gray-50">
-    <div class="flex h-screen bg-gray-50">
-      <!-- Sidebar -->
-      <div
-        class="w-80 bg-white shadow-lg border-r border-gray-200 flex flex-col"
-      >
-        <!-- Sidebar Header -->
-        <div class="p-6 border-b border-gray-200">
-          <h1 class="text-2xl font-bold text-gray-800 mb-2">TaskFlow</h1>
-          <p class="text-sm text-gray-600">Organize your tasks efficiently</p>
-        </div>
+export const generateBadge = (task, dueLabel) => {
+  let toReturn = "";
+  if (task.isCompleted === true) {
+    toReturn = `
+      <span class="text-xs px-2 bg-green-800 text-white py-1 rounded-full font-medium border ml-2">
+        Completed
+      </span>
+    `;
+  }
+  if (dueLabel === "Overdue") {
+    toReturn = `
+      <span class="text-xs px-2 bg-red-800 text-white py-1 rounded-full font-medium border ml-2">
+        Failed
+      </span>
+    `;
+  }
+  return toReturn;
+};
 
-        <!-- Add Task Section -->
-        <div class="p-4 border-b border-gray-200">
-          <button
-            class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center"
-          >
-            <svg
-              class="w-5 h-5 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-              ></path>
-            </svg>
-            Add New Task
-          </button>
-        </div>
-
-        <!-- Navigation -->
-        <nav class="flex-1 p-4 space-y-2">
-          <a href="index.html" class="sidebar-item">
-            <svg
-              class="w-5 h-5 mr-3"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-              ></path>
-            </svg>
-            <span>All Tasks</span>
-            <span
-              class="ml-auto bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full"
-              >12</span
-            >
-          </a>
-
-          <div class="sidebar-item">
-            <svg
-              class="w-5 h-5 mr-3"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-              ></path>
-            </svg>
-            <span>Today</span>
-            <span
-              class="ml-auto bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full"
-              >5</span
-            >
-          </div>
-
-          <div class="sidebar-item">
-            <svg
-              class="w-5 h-5 mr-3"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              ></path>
-            </svg>
-            <span>Upcoming</span>
-            <span
-              class="ml-auto bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded-full"
-              >3</span
-            >
-          </div>
-
-          <div class="sidebar-item">
-            <svg
-              class="w-5 h-5 mr-3"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            <span>Completed</span>
-            <span
-              class="ml-auto bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full"
-              >8</span
-            >
-          </div>
-
-          <div class="sidebar-item">
-            <svg
-              class="w-5 h-5 mr-3"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
-              ></path>
-            </svg>
-            <span>Important</span>
-            <span
-              class="ml-auto bg-red-100 text-red-700 text-xs px-2 py-1 rounded-full"
-              >2</span
-            >
-          </div>
-        </nav>
-
-        <!-- Stats Section -->
-        <div class="p-4 border-t border-gray-200">
-          <div class="bg-gray-50 rounded-lg p-4">
-            <h3 class="text-sm font-medium text-gray-700 mb-3">
-              Today's Progress
-            </h3>
-            <div class="space-y-3">
-              <div class="flex items-center justify-between text-sm">
-                <span class="text-gray-600">Completed</span>
-                <span class="font-medium text-green-600">5 of 8</span>
-              </div>
-              <div class="w-full bg-gray-200 rounded-full h-2">
-                <div
-                  class="bg-green-500 h-2 rounded-full"
-                  style="width: 62%"
-                ></div>
-              </div>
+export const itemCard = (task, dueLabel) => {
+  return `
+        <div class="flex items-start">
+            <input type="checkbox" class="mt-1 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+            <div class="ml-3 flex-1">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-medium text-gray-800">
+                    ${task.title}
+                    </h3>
+                    <div class="flex items-center">
+                        <span class="priority-${task.priority.toLocaleLowerCase()} text-xs px-2 py-1 rounded-full font-medium border">
+                        ${task.priority}
+                        </span>
+                        ${generateBadge(task, dueLabel)}
+                    </div>
+                </div>
+                <p class="text-gray-600 mt-1">${task.description}</p>
+                <div class="flex items-center mt-3 text-sm text-gray-500">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>   
+                    </svg>
+                    ${dueLabel}
+                    <span class="mx-2">•</span>
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                    </svg>
+                    ${task.category}
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+      `;
+};
 
-      <!-- Main Content -->
+export const addTask = () => {
+  `
+ <!-- Main Content -->
       <div class="flex-1 flex flex-col">
         <!-- Header -->
         <header class="bg-white shadow-sm border-b border-gray-200 p-6">
@@ -516,6 +398,5 @@
           </div>
         </main>
       </div>
-    </div>
-  </body>
-</html>
+`;
+};
