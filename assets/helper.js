@@ -2,15 +2,21 @@ export function getNumbersOf(tasks, filter) {
   return filterList(tasks, filter).length;
 }
 
-export function removeActiveSidebar() {
-  document.querySelectorAll(".sidebar-item").forEach((item) => {
-    item.addEventListener("click", () => {
-      document
-        .querySelectorAll(".sidebar-item")
-        .forEach((i) => i.classList.remove("active"));
-      item.classList.add("active");
+export function removeActiveSidebar(isAll) {
+  if (isAll === true) {
+    document.querySelectorAll(".sidebar-item").forEach((item) => {
+      item.classList.remove("active");
     });
-  });
+  } else {
+    document.querySelectorAll(".sidebar-item").forEach((item) => {
+      item.addEventListener("click", () => {
+        document
+          .querySelectorAll(".sidebar-item")
+          .forEach((i) => i.classList.remove("active"));
+        item.classList.add("active");
+      });
+    });
+  }
 }
 
 export function filterList(tasks, filter) {

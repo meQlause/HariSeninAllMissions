@@ -1,4 +1,4 @@
-export const generateBadge = (task, dueLabel) => {
+const generateBadge = (task, dueLabel) => {
   let toReturn = "";
   if (task.isCompleted === true) {
     toReturn = `
@@ -17,7 +17,7 @@ export const generateBadge = (task, dueLabel) => {
   return toReturn;
 };
 
-export const itemCard = (task, dueLabel) => {
+export const itemCardTemplate = (task, dueLabel) => {
   return `
         <div class="flex items-start">
             <input type="checkbox" class="mt-1 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
@@ -50,32 +50,76 @@ export const itemCard = (task, dueLabel) => {
       `;
 };
 
-export const addTask = () => {
-  `
- <!-- Main Content -->
-      <div class="flex-1 flex flex-col">
+export const containerTemplate = () => {
+  return `
+    <!-- Header -->
+          <header class="bg-white shadow-sm border-b border-gray-200 p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h2 class="text-2xl font-bold text-gray-800">All Tasks</h2>
+                <p class="text-gray-600 mt-1">You have 12 tasks remaining</p>
+              </div>
+
+              <div class="flex items-center space-x-4">
+                <!-- Search Bar -->
+                <div class="relative">
+                  <input
+                    type="text"
+                    placeholder="Search tasks..."
+                    class="w-80 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                  <svg
+                    class="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    ></path>
+                  </svg>
+                </div>
+
+                <button
+                  class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                >
+                  <svg
+                    class="w-4 h-4 inline mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 9l4-4 4 4m0 6l-4 4-4-4"
+                    ></path>
+                  </svg>
+                  Sort
+                </button>
+              </div>
+            </div>
+          </header>
+
+          <!-- Task List -->
+          <main class="flex-1 overflow-y-auto p-6">
+            <div class="space-y-4 max-w-4xl mx-auto task-container">
+              <!-- Content -->
+            </div>
+          </main>
+        `;
+};
+
+export const addTaskTemplate = () => {
+  return `
         <!-- Header -->
         <header class="bg-white shadow-sm border-b border-gray-200 p-6">
           <div class="flex items-center justify-between">
             <div class="flex items-center">
-              <a
-                href="index.html"
-                class="mr-4 p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
-              >
-                <svg
-                  class="w-5 h-5 text-gray-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 19l-7-7 7-7"
-                  ></path>
-                </svg>
-              </a>
               <div>
                 <h2 class="text-2xl font-bold text-gray-800">Add New Task</h2>
                 <p class="text-gray-600 mt-1">
@@ -87,8 +131,8 @@ export const addTask = () => {
         </header>
 
         <!-- Add Task Form -->
-        <main class="flex-1 overflow-y-auto p-6">
-          <div class="max-w-2xl mx-auto">
+        <main class="flex-1 p-6 overflow-y-auto
+          <div class="space-y-4 max-w-2xl mx-auto">
             <form class="space-y-6">
               <!-- Task Title -->
               <div
@@ -213,93 +257,6 @@ export const addTask = () => {
                 </div>
               </div>
 
-              <!-- Additional Options -->
-              <div
-                class="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
-              >
-                <h3 class="text-lg font-medium text-gray-800 mb-4">
-                  Additional Options
-                </h3>
-                <div class="space-y-4">
-                  <!-- Reminder -->
-                  <div class="flex items-center justify-between">
-                    <div>
-                      <label
-                        for="reminder"
-                        class="text-sm font-medium text-gray-700"
-                      >
-                        Set Reminder
-                      </label>
-                      <p class="text-sm text-gray-500">
-                        Get notified before the due date
-                      </p>
-                    </div>
-                    <label
-                      class="relative inline-flex items-center cursor-pointer"
-                    >
-                      <input
-                        type="checkbox"
-                        id="reminder"
-                        name="reminder"
-                        class="sr-only peer"
-                      />
-                      <div
-                        class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
-                      ></div>
-                    </label>
-                  </div>
-
-                  <!-- Important -->
-                  <div class="flex items-center justify-between">
-                    <div>
-                      <label
-                        for="important"
-                        class="text-sm font-medium text-gray-700"
-                      >
-                        Mark as Important
-                      </label>
-                      <p class="text-sm text-gray-500">
-                        Add this task to your important list
-                      </p>
-                    </div>
-                    <label
-                      class="relative inline-flex items-center cursor-pointer"
-                    >
-                      <input
-                        type="checkbox"
-                        id="important"
-                        name="important"
-                        class="sr-only peer"
-                      />
-                      <div
-                        class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
-                      ></div>
-                    </label>
-                  </div>
-
-                  <!-- Recurring -->
-                  <div>
-                    <label
-                      for="recurring"
-                      class="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Repeat Task
-                    </label>
-                    <select
-                      id="recurring"
-                      name="recurring"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    >
-                      <option value="none">Don't repeat</option>
-                      <option value="daily">Daily</option>
-                      <option value="weekly">Weekly</option>
-                      <option value="monthly">Monthly</option>
-                      <option value="yearly">Yearly</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
               <!-- Tags -->
               <div
                 class="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
@@ -397,6 +354,5 @@ export const addTask = () => {
             </form>
           </div>
         </main>
-      </div>
 `;
 };

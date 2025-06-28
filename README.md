@@ -4,12 +4,13 @@
 
 ```
 Mission4_/
-├── main.html              # Main application page
+├── index.html             # Main application page
 ├── assets/
-│   ├── script.js          # Main JavaScript functionality
-│   ├── styles.css         # CSS styles
-│   └── template.js        # HTML templates and components
-└── README.md              # This file
+│   ├── script.js          # Main JavaScript functionality and event handlers
+│   ├── styles.css         # CSS styles and Tailwind CSS
+│   ├── template.js        # HTML templates and components
+│   └── helper.js          # Utility functions and helpers
+└── README.md  
 ```
 
 ## Getting Started
@@ -50,7 +51,7 @@ python -m SimpleHTTPServer 8000
 
 #### Access the application:
 
-Open your web browser and go to: `http://localhost:8000/main.html`
+Open your web browser and go to: `http://localhost:8000/index.html`
 
 ### Method 2: Using Node.js
 
@@ -82,7 +83,7 @@ php -S localhost:8000
 ### Method 4: Using Live Server (VS Code Extension)
 
 1. Install the "Live Server" extension in VS Code
-2. Right-click on `main.html`
+2. Right-click on `index.html`
 3. Select "Open with Live Server"
 
 ## How to Stop the Web Server

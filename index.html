@@ -21,9 +21,9 @@
 
           <!-- Add Task Section -->
           <div class="p-4 border-b border-gray-200">
-            <a
-              href="add-task.html"
-              class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center"
+            <div
+              class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center cursor-pointer"
+              onclick="createNewTask()"
             >
               <svg
                 class="w-5 h-5 mr-2"
@@ -39,7 +39,7 @@
                 ></path>
               </svg>
               Add New Task
-            </a>
+            </div>
           </div>
 
           <!-- Navigation -->
@@ -193,66 +193,8 @@
         </div>
 
         <!-- Main Content -->
-        <div class="flex-1 flex flex-col">
-          <!-- Header -->
-          <header class="bg-white shadow-sm border-b border-gray-200 p-6">
-            <div class="flex items-center justify-between mb-4">
-              <div>
-                <h2 class="text-2xl font-bold text-gray-800">All Tasks</h2>
-                <p class="text-gray-600 mt-1">You have 12 tasks remaining</p>
-              </div>
-
-              <div class="flex items-center space-x-4">
-                <!-- Search Bar -->
-                <div class="relative">
-                  <input
-                    type="text"
-                    placeholder="Search tasks..."
-                    class="w-80 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                  <svg
-                    class="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    ></path>
-                  </svg>
-                </div>
-
-                <button
-                  class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
-                >
-                  <svg
-                    class="w-4 h-4 inline mr-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M8 9l4-4 4 4m0 6l-4 4-4-4"
-                    ></path>
-                  </svg>
-                  Sort
-                </button>
-              </div>
-            </div>
-          </header>
-
-          <!-- Task List -->
-          <main class="flex-1 overflow-y-auto p-6">
-            <div class="space-y-4 max-w-4xl mx-auto task-container">
-              <!-- Content -->
-            </div>
-          </main>
+        <div class="flex-1 flex flex-col container">
+          
         </div>
       </div>
     </div>

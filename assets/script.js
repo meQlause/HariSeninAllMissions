@@ -1,4 +1,8 @@
-import { addTask, itemCard } from "./template.js";
+import {
+  addTaskTemplate,
+  containerTemplate,
+  itemCardTemplate,
+} from "./template.js";
 import {
   filterList,
   getDueLabel,
@@ -7,8 +11,12 @@ import {
 } from "./helper.js";
 
 const handleSidebarClick = (filter) => {
-  removeActiveSidebar();
-
+  removeActiveSidebar(false);
+  const container = document.querySelector(".container");
+  if (container.querySelector(".task-container") === null) {
+    container.innerHTML = "";
+    container.innerHTML = containerTemplate();
+  }
   const taskContainer = document.querySelector(".task-container");
 
   taskContainer.innerHTML = "";
@@ -16,9 +24,16 @@ const handleSidebarClick = (filter) => {
     const div = document.createElement("div");
     div.className = "task-card";
 
-    div.innerHTML = itemCard(task, getDueLabel(task.due));
+    div.innerHTML = itemCardTemplate(task, getDueLabel(task.due));
     taskContainer.appendChild(div);
   });
+};
+
+const createNewTask = () => {
+  removeActiveSidebar(true);
+
+  const container = document.querySelector(".container");
+  container.innerHTML = addTaskTemplate();
 };
 
 const tasks = [
@@ -95,3 +110,4 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 window.handleSidebarClick = handleSidebarClick;
+window.createNewTask = createNewTask;
