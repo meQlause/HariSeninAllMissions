@@ -43,6 +43,12 @@ const tasks = [
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
+  tasks.forEach((item) => {
+    if (getDueLabel(item.due) === "Overdue") {
+      item.isCompleted = true;
+    }
+  });
+
   const sidebarOrder = [
     "allItem",
     "important",
@@ -53,19 +59,11 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
   document.querySelectorAll(".sidebar-item").forEach((item, index) => {
     const counts = getNumbersOf(sidebarOrder[index]);
-    console.log(counts);
     item.querySelector(".sidebar-number").innerHTML = counts;
     if (counts === 0) {
-      console.log(counts);
       item.classList.add("opacity-50");
       item.classList.add("pointer-events-none");
       item.classList.add("cursor-not-allowed");
-    }
-  });
-
-  tasks.forEach((item) => {
-    if (getDueLabel(item.due) === "Overdue") {
-      item.isCompleted = true;
     }
   });
 
@@ -134,6 +132,7 @@ function removeActiveSidebar() {
 
 function filterList(tasks, filter) {
   const activeTask = tasks.filter((item) => item.isCompleted === false);
+
   switch (filter) {
     case "allItem":
       return tasks;
