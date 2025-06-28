@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Task - TaskFlow</title>
+    <link href="assets/style.css" rel="stylesheet">
+  </head>
+  <body class="bg-gray-50">
+    <div class="flex h-screen bg-gray-50">
+      <!-- Sidebar -->
+      <div class="w-80 bg-white shadow-lg border-r border-gray-200 flex flex-col">
+        <!-- Sidebar Header -->
+        <div class="p-6 border-b border-gray-200">
+          <h1 class="text-2xl font-bold text-gray-800 mb-2">TaskFlow</h1>
+          <p class="text-sm text-gray-600">Organize your tasks efficiently</p>
+        </div>
+        
+        <!-- Add Task Section -->
+        <div class="p-4 border-b border-gray-200">
+          <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+            Add New Task
+          </button>
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="flex-1 p-4 space-y-2">
+          <a href="index.html" class="sidebar-item">
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+            <span>All Tasks</span>
+            <span class="ml-auto bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full">12</span>
+          </a>
+          
+          <div class="sidebar-item">
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+            </svg>
+            <span>Today</span>
+            <span class="ml-auto bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full">5</span>
+          </div>
+          
+          <div class="sidebar-item">
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <span>Upcoming</span>
+            <span class="ml-auto bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded-full">3</span>
+          </div>
+          
+          <div class="sidebar-item">
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>Completed</span>
+            <span class="ml-auto bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">8</span>
+          </div>
+          
+          <div class="sidebar-item">
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+            </svg>
+            <span>Important</span>
+            <span class="ml-auto bg-red-100 text-red-700 text-xs px-2 py-1 rounded-full">2</span>
+          </div>
+        </nav>
+        
+        <!-- Stats Section -->
+        <div class="p-4 border-t border-gray-200">
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="text-sm font-medium text-gray-700 mb-3">Today's Progress</h3>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-gray-600">Completed</span>
+                <span class="font-medium text-green-600">5 of 8</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="bg-green-500 h-2 rounded-full" style="width: 62%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="flex-1 flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b border-gray-200 p-6">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <a href="index.html" class="mr-4 p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200">
+                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </a>
+              <div>
+                <h2 class="text-2xl font-bold text-gray-800">Add New Task</h2>
+                <p class="text-gray-600 mt-1">Create a new task to stay organized</p>
+              </div>
+            </div>
+            
+          </div>
+        </header>
+        
+        <!-- Add Task Form -->
+        <main class="flex-1 overflow-y-auto p-6">
+          <div class="max-w-2xl mx-auto">
+            <form class="space-y-6">
+              <!-- Task Title -->
+              <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <div class="space-y-4">
+                  <div>
+                    <label for="task-title" class="block text-sm font-medium text-gray-700 mb-2">
+                      Task Title *
+                    </label>
+                    <input 
+                      type="text" 
+                      id="task-title"
+                      name="task-title"
+                      placeholder="Enter task title..."
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+                      required
+                    >
+                  </div>
+                  
+                  <div>
+                    <label for="task-description" class="block text-sm font-medium text-gray-700 mb-2">
+                      Description
+                    </label>
+                    <textarea 
+                      id="task-description"
+                      name="task-description"
+                      rows="4"
+                      placeholder="Add a description for your task..."
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Task Details -->
+              <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h3 class="text-lg font-medium text-gray-800 mb-4">Task Details</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <!-- Priority -->
+                  <div>
+                    <label for="priority" class="block text-sm font-medium text-gray-700 mb-2">
+                      Priority
+                    </label>
+                    <select 
+                      id="priority"
+                      name="priority"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                      <option value="low">Low Priority</option>
+                      <option value="medium" selected>Medium Priority</option>
+                      <option value="high">High Priority</option>
+                    </select>
+                  </div>
+                  
+                  <!-- Category -->
+                  <div>
+                    <label for="category" class="block text-sm font-medium text-gray-700 mb-2">
+                      Category
+                    </label>
+                    <select 
+                      id="category"
+                      name="category"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                      <option value="work">Work</option>
+                      <option value="personal">Personal</option>
+                      <option value="design">Design</option>
+                      <option value="development">Development</option>
+                      <option value="meetings">Meetings</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  
+                  <!-- Due Date -->
+                  <div>
+                    <label for="due-date" class="block text-sm font-medium text-gray-700 mb-2">
+                      Due Date
+                    </label>
+                    <input 
+                      type="date" 
+                      id="due-date"
+                      name="due-date"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                  </div>
+                  
+                  <!-- Due Time -->
+                  <div>
+                    <label for="due-time" class="block text-sm font-medium text-gray-700 mb-2">
+                      Due Time
+                    </label>
+                    <input 
+                      type="time" 
+                      id="due-time"
+                      name="due-time"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Additional Options -->
+              <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h3 class="text-lg font-medium text-gray-800 mb-4">Additional Options</h3>
+                <div class="space-y-4">
+                  <!-- Reminder -->
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <label for="reminder" class="text-sm font-medium text-gray-700">
+                        Set Reminder
+                      </label>
+                      <p class="text-sm text-gray-500">Get notified before the due date</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" id="reminder" name="reminder" class="sr-only peer">
+                      <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                  </div>
+                  
+                  <!-- Important -->
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <label for="important" class="text-sm font-medium text-gray-700">
+                        Mark as Important
+                      </label>
+                      <p class="text-sm text-gray-500">Add this task to your important list</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" id="important" name="important" class="sr-only peer">
+                      <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                  </div>
+                  
+                  <!-- Recurring -->
+                  <div>
+                    <label for="recurring" class="block text-sm font-medium text-gray-700 mb-2">
+                      Repeat Task
+                    </label>
+                    <select 
+                      id="recurring"
+                      name="recurring"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                      <option value="none">Don't repeat</option>
+                      <option value="daily">Daily</option>
+                      <option value="weekly">Weekly</option>
+                      <option value="monthly">Monthly</option>
+                      <option value="yearly">Yearly</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Tags -->
+              <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h3 class="text-lg font-medium text-gray-800 mb-4">Tags</h3>
+                <div>
+                  <input 
+                    type="text" 
+                    id="tags"
+                    name="tags"
+                    placeholder="Add tags separated by commas (e.g., urgent, client, review)"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                  <p class="text-sm text-gray-500 mt-2">Tags help you organize and find tasks quickly</p>
+                </div>
+                
+                <!-- Popular Tags -->
+                <div class="mt-4">
+                  <p class="text-sm font-medium text-gray-700 mb-2">Popular Tags:</p>
+                  <div class="flex flex-wrap gap-2">
+                    <button type="button" class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors duration-200">
+                      urgent
+                    </button>
+                    <button type="button" class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors duration-200">
+                      client
+                    </button>
+                    <button type="button" class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors duration-200">
+                      review
+                    </button>
+                    <button type="button" class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors duration-200">
+                      meeting
+                    </button>
+                    <button type="button" class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors duration-200">
+                      follow-up
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Action Buttons -->
+              <div class="flex items-center justify-between">
+                <a href="index.html" class="px-6 py-3 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-200 transition-colors duration-200 font-medium">
+                  Cancel
+                </a>
+                <div class="flex items-center justify-between space-x-4">
+                  <a href="index.html" class="px-6 py-3 text-red-600 border border-gray-300 rounded-lg hover:bg-red-200 transition-colors duration-200 font-medium">
+                    Reset
+                  </a>
+                  <button type="submit" class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    Create Task
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
