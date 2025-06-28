@@ -23,7 +23,6 @@ const handleSidebarClick = (filter) => {
   if (container.querySelector(".task-container") === null) {
     initContainer(container, containerTemplate, getTasks(), getSelectedData());
   }
-
   populateTasks(getTasks(), itemCardTemplate, filter);
 
   document.querySelectorAll(".checkbox-state").forEach((box) => {
@@ -65,6 +64,14 @@ const createNewTask = () => {
     saveTask(formData);
     location.reload();
   });
+};
+
+const showSidebar = () => {
+  const sidebar = document.getElementById("sidebar");
+
+  localStorage.setItem("a", JSON.stringify(sidebar.classList));
+  sidebar.classList.toggle("hidden");
+  localStorage.setItem("b", JSON.stringify(sidebar.classList));
 };
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -116,3 +123,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
 window.handleSidebarClick = handleSidebarClick;
 window.createNewTask = createNewTask;
+window.showSidebar = showSidebar;

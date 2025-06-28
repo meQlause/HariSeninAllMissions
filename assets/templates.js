@@ -38,18 +38,23 @@ export const itemCardTemplate = (task, dueLabel) => {
                     </div>
                 </div>
                 <p class="text-gray-600 mt-1">${task.description}</p>
-                <div class="flex items-center mt-3 text-sm text-gray-500">
+                <div class="flex md:flex-row flex-col gap-2 items-start mt-3 text-sm text-gray-500">
+                  <div class="flex flex-row items-center justify-center">  
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>   
                     </svg>
-                    ${dueLabel} 
-                    : 
-                    ${task.due.split("+")[0].split("T").join(", ")}
-                    <span class="mx-2">•</span>
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                    <div class="flex flex-col md:flex-row"> 
+                      <p> ${dueLabel} </p> 
+                      <p>${task.due.split("+")[0].split("T").join(", ")} </p>
+                    </div>
+                  </div>
+                  <div class="flex justify-center items-center">
+                    <span class="mr-2 ml-1 md:mx-2">•</span>
+                    <svg class="w-4 h-4 mr-1 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
                     </svg>
-                    ${task.category}
+                  ${task.category}
+                  </div>
                 </div>
             </div>
         </div>
@@ -92,20 +97,20 @@ export const statsTemplate = (todaysTodo, totalComplete, totalOverdue) => {
 export const containerTemplate = () => {
   return `
     <!-- Header -->
-          <header class="bg-white shadow-sm border-b border-gray-200 p-6">
-            <div class="flex items-center justify-between mb-4">
-              <div>
+          <header class="md:block flex flex-row justify-between bg-white shadow-sm border-b border-gray-200 p-6">
+            <div class="flex flex-col gap-5 items-center justify-between md:mb-4 md:flex-row">
+              <div class="mr-auto mb-2 md:mb-0 md:mr-0">
                 <h2 class="text-2xl font-bold text-gray-800">All Tasks</h2>
                 <p class="text-gray-600 mt-1">Bellow is all your To do list</p>
               </div>
-
-              <div class="flex items-center space-x-4">
+        
+              <div class="flex flex-col gap-3 md:flex-row md:mr-0 mr-auto items-center space-x-4">
                 <!-- Search Bar -->
-                <div class="relative">
+                <div class="relative -z-0">
                   <input
                     type="text"
                     placeholder="Search tasks..."
-                    class="w-80 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    class="w-full max-w-80 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                   <svg
                     class="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
@@ -123,7 +128,7 @@ export const containerTemplate = () => {
                 </div>
 
                 <div
-                  class="flex flex-row items-center justify-center px-3 w-32 py-2 text-sm bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-white font-medium cursor-pointer save-button"
+                  class="flex flex-row mr-auto items-center justify-center px-3 w-32 py-2 text-sm bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-white font-medium cursor-pointer save-button"
                 >
                   <svg
                     class="w-5 h-5 mr-2 mt-0.5"
@@ -139,10 +144,13 @@ export const containerTemplate = () => {
                     ></path>
                   </svg>
                   Completed
-                </button>
+                </div>
               </div>
             </div>
-          </header>
+              <button id="hamburger-btn" class="p-2 rounded hover:bg-gray-200 h-10 block md:hidden cursor-pointer" onClick="showSidebar()">
+                <i class="fa fa-bars text-[1.5rem]"></i>
+              </button>
+            </header>
 
           <!-- Task List -->
           <main class="flex-1 overflow-y-auto p-6">
