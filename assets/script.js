@@ -2,6 +2,7 @@ import {
   addTaskTemplate,
   containerTemplate,
   itemCardTemplate,
+  statsTemplate,
 } from "./template.js";
 import {
   filterList,
@@ -14,17 +15,18 @@ const handleSidebarClick = (filter) => {
   removeActiveSidebar(false);
   const container = document.querySelector(".container");
   if (container.querySelector(".task-container") === null) {
-    container.innerHTML = "";
     container.innerHTML = containerTemplate();
   }
-  const taskContainer = document.querySelector(".task-container");
 
+  const taskContainer = document.querySelector(".task-container");
   taskContainer.innerHTML = "";
-  filterList(tasks, filter).forEach((task) => {
+
+  const filteredTask = filterList(tasks, filter);
+  filteredTask.forEach((task) => {
     const div = document.createElement("div");
     div.className = "task-card";
+    div.innerHTML = itemCardTemplate(task, getDueLabel(task.due, false));
 
-    div.innerHTML = itemCardTemplate(task, getDueLabel(task.due));
     taskContainer.appendChild(div);
   });
 };
@@ -38,51 +40,90 @@ const createNewTask = () => {
 
 const tasks = [
   {
-    title: "Fix broken links",
-    description: "Audit and repair all 404 errors on site",
+    title: "Standup Meeting",
+    description: "Daily team standup on Zoom",
     priority: "High",
-    due: "2025-06-26T14:00:00",
-    category: "Development",
-    isCompleted: false,
-  },
-  {
-    title: "Review project proposals",
-    description:
-      "Review all submitted project proposals and provide feedback by end of day",
-    priority: "High",
-    due: "2025-06-28T18:00:00",
-    category: "Work",
-    isCompleted: false,
-  },
-  {
-    title: "Team meeting",
-    description: "Weekly sync-up with the product team",
-    priority: "Medium",
-    due: "2025-06-30T09:00:00",
+    due: "2025-06-28T09:00:00+07:00",
     category: "Meetings",
     isCompleted: false,
   },
   {
-    title: "Clean up workspace",
-    description: "Organize desk and delete unnecessary files",
+    title: "Update GitHub Issues",
+    description: "Review and update issue statuses for sprint",
+    priority: "Medium",
+    due: "2025-06-28T10:30:00+07:00",
+    category: "Development",
+    isCompleted: false,
+  },
+  {
+    title: "Design Review",
+    description: "Review UI mockups with design team",
+    priority: "High",
+    due: "2025-06-28T11:15:00+07:00",
+    category: "Design",
+    isCompleted: false,
+  },
+  {
+    title: "Lunch with team",
+    description: "Team lunch at local restaurant",
     priority: "Low",
-    due: "2025-07-03T15:00:00",
+    due: "2025-06-28T12:30:00+07:00",
     category: "Personal",
     isCompleted: false,
   },
   {
-    title: "Submit report",
-    description: "Submit Q2 financial report",
+    title: "Client Call",
+    description: "Discuss project scope and deliverables",
     priority: "High",
-    due: "2025-07-10T12:00:00",
+    due: "2025-06-28T14:00:00+07:00",
+    category: "Work",
+    isCompleted: false,
+  },
+  {
+    title: "Code Review",
+    description: "Review pull requests and merge changes",
+    priority: "Medium",
+    due: "2025-06-28T15:30:00+07:00",
+    category: "Development",
+    isCompleted: false,
+  },
+  {
+    title: "Prepare Report",
+    description: "Compile progress report for management",
+    priority: "High",
+    due: "2025-06-28T16:45:00+07:00",
     category: "Finance",
+    isCompleted: false,
+  },
+  {
+    title: "Plan Weekly Tasks",
+    description: "Organize next week's sprint tasks",
+    priority: "Low",
+    due: "2025-06-28T18:00:00+07:00",
+    category: "Work",
+    isCompleted: false,
+  },
+  {
+    title: "Reply Emails",
+    description: "Reply to important pending emails",
+    priority: "Low",
+    due: "2025-06-28T19:15:00+07:00",
+    category: "Admin",
+    isCompleted: false,
+  },
+  {
+    title: "Evening Run",
+    description: "Jog in the park for 30 minutes",
+    priority: "Low",
+    due: "2025-06-28T20:00:00+07:00",
+    category: "Health",
     isCompleted: true,
   },
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
   tasks.forEach((item) => {
-    if (getDueLabel(item.due) === "Overdue") {
+    if (getDueLabel(item.due, false) === "Overdue") {
       item.isCompleted = true;
     }
   });
@@ -105,6 +146,20 @@ document.addEventListener("DOMContentLoaded", function () {
       item.classList.add("cursor-not-allowed");
     }
   });
+
+  const todaysTodo = tasks.filter(
+    (item) => getDueLabel(item.due, true) === "Due Today"
+  );
+  const totalComplete = todaysTodo.filter((item) => item.isCompleted === true);
+  const totalOverdue = todaysTodo.filter(
+    (item) => getDueLabel(item.due, false) === "Overdue"
+  );
+
+  document.querySelector(".stats").innerHTML = statsTemplate(
+    todaysTodo.length ? todaysTodo.length : 0,
+    totalComplete.length ? totalComplete.length : 0,
+    totalOverdue.length ? totalOverdue.length : 0
+  );
 
   handleSidebarClick("allItem");
 });

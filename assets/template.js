@@ -38,7 +38,9 @@ export const itemCardTemplate = (task, dueLabel) => {
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>   
                     </svg>
-                    ${dueLabel}
+                    ${dueLabel} 
+                    : 
+                    ${task.due.split("+")[0].split("T").join(", ")}
                     <span class="mx-2">•</span>
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
@@ -50,6 +52,38 @@ export const itemCardTemplate = (task, dueLabel) => {
       `;
 };
 
+export const statsTemplate = (todaysTodo, totalComplete, totalOverdue) => {
+  const completePercetage = todaysTodo
+    ? Math.round(((totalComplete - totalOverdue) / todaysTodo) * 100)
+    : 0;
+  const overduePercetage = todaysTodo
+    ? Math.round((totalOverdue / todaysTodo) * 100)
+    : 0;
+
+  return `
+    <div class="flex items-center justify-between text-sm">
+      <span class="text-gray-600">Completed</span>
+      <span class="font-medium text-green-600">
+      ${totalComplete - totalOverdue} of 
+      ${todaysTodo}</span>
+      <span class="text-gray-600">Overdue</span>
+      <span class="font-medium text-red-600">
+      ${totalOverdue} of 
+      ${todaysTodo}</span>
+    </div>
+    <div class="flex flex-row w-full bg-gray-200 rounded-full h-2">
+      <div
+        class="bg-red-500 h-2 rounded-l-full"
+        style="width: ${overduePercetage}%"
+      ></div>
+      <div
+        class="bg-green-500 h-2 rounded-r-full"
+        style="width: ${completePercetage}%"
+      ></div>
+    </div>
+    `;
+};
+
 export const containerTemplate = () => {
   return `
     <!-- Header -->
@@ -57,7 +91,7 @@ export const containerTemplate = () => {
             <div class="flex items-center justify-between mb-4">
               <div>
                 <h2 class="text-2xl font-bold text-gray-800">All Tasks</h2>
-                <p class="text-gray-600 mt-1">You have 12 tasks remaining</p>
+                <p class="text-gray-600 mt-1">Bellow is all your To do list</p>
               </div>
 
               <div class="flex items-center space-x-4">
