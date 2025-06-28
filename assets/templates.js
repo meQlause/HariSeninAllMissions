@@ -123,7 +123,7 @@ export const containerTemplate = () => {
                 </div>
 
                 <div
-                  class="flex flex-row items-center justify-center px-3 w-24 py-2 text-sm bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-white font-medium cursor-pointer save-button"
+                  class="flex flex-row items-center justify-center px-3 w-32 py-2 text-sm bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-white font-medium cursor-pointer save-button"
                 >
                   <svg
                     class="w-5 h-5 mr-2 mt-0.5"
@@ -138,7 +138,7 @@ export const containerTemplate = () => {
                       d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                     ></path>
                   </svg>
-                  Save
+                  Completed
                 </button>
               </div>
             </div>
