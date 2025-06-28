@@ -1,4 +1,4 @@
-import { getTasks } from "./mockUp.js";
+import { getSelectedData, getTasks, setSelectedData } from "./mockUpData.js";
 import {
   addTaskTemplate,
   containerTemplate,
@@ -11,25 +11,34 @@ import {
   removeActiveSidebar,
   getNumbersOf,
   saveTask,
+  initContainer,
+  generateTimestampId,
+  populateTasks,
 } from "./helpers.js";
 
 const handleSidebarClick = (filter) => {
   removeActiveSidebar(false);
+
   const container = document.querySelector(".container");
   if (container.querySelector(".task-container") === null) {
-    container.innerHTML = containerTemplate();
+    initContainer(container, containerTemplate, getTasks(), getSelectedData());
   }
 
-  const taskContainer = document.querySelector(".task-container");
-  taskContainer.innerHTML = "";
+  populateTasks(getTasks(), itemCardTemplate, filter);
 
-  const filteredTask = filterList(getTasks(), filter);
-  filteredTask.forEach((task) => {
-    const div = document.createElement("div");
-    div.className = "task-card";
-    div.innerHTML = itemCardTemplate(task, getDueLabel(task.due, false));
-
-    taskContainer.appendChild(div);
+  document.querySelectorAll(".checkbox-state").forEach((box) => {
+    box.addEventListener("change", () => {
+      if (box.checked === true) {
+        let selectedData = getSelectedData();
+        selectedData.push(box.dataset.index);
+        setSelectedData(selectedData);
+      } else {
+        let selectedData = getSelectedData();
+        setSelectedData(
+          selectedData.filter((val) => val !== box.dataset.index)
+        );
+      }
+    });
   });
 };
 
@@ -50,6 +59,7 @@ const createNewTask = () => {
       category: document.getElementById("category").value,
       dueDate: document.getElementById("due-date").value,
       dueTime: document.getElementById("due-time").value,
+      uniqueId: generateTimestampId(),
     };
 
     saveTask(formData);

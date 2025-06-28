@@ -18,9 +18,13 @@ const generateBadge = (task, dueLabel) => {
 };
 
 export const itemCardTemplate = (task, dueLabel) => {
+  const checkbox =
+    task.isCompleted === false
+      ? `<input type="checkbox" data-index="${task.uniqueId}" class="checkbox-state mt-1 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">`
+      : "";
   return `
         <div class="flex items-start">
-            <input type="checkbox" class="mt-1 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+        ${checkbox}
             <div class="ml-3 flex-1">
                 <div class="flex items-center justify-between">
                     <h3 class="text-lg font-medium text-gray-800">
@@ -61,6 +65,7 @@ export const statsTemplate = (todaysTodo, totalComplete, totalOverdue) => {
     : 0;
 
   return `
+  <div class="mx-auto text-sm text-shadow-amber-400 text-gray-700"> Today's Progress : </div>
     <div class="flex items-center justify-between text-sm">
       <span class="text-gray-600">Completed</span>
       <span class="font-medium text-green-600">
@@ -117,11 +122,11 @@ export const containerTemplate = () => {
                   </svg>
                 </div>
 
-                <button
-                  class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                <div
+                  class="flex flex-row items-center justify-center px-3 w-24 py-2 text-sm bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-white font-medium cursor-pointer save-button"
                 >
                   <svg
-                    class="w-4 h-4 inline mr-1"
+                    class="w-5 h-5 mr-2 mt-0.5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -130,10 +135,10 @@ export const containerTemplate = () => {
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M8 9l4-4 4 4m0 6l-4 4-4-4"
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                     ></path>
                   </svg>
-                  Sort
+                  Save
                 </button>
               </div>
             </div>

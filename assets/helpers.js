@@ -75,6 +75,43 @@ export function getDueLabel(dueDateStr, passHour) {
   }
 }
 
+export function initContainer(container, template, task, selectedtask) {
+  container.innerHTML = template();
+  container.querySelector(".save-button").addEventListener("click", () => {
+    selectedtask.forEach((hash) => {
+      task.forEach((task) => {
+        if (task.uniqueId === hash) {
+          task.isCompleted = true;
+        }
+      });
+    });
+    purgethenSaveToLocalStorage(task);
+    location.reload();
+  });
+}
+
+function purgethenSaveToLocalStorage(dataToSave) {
+  localStorage.setItem("tasks", JSON.stringify(dataToSave));
+}
+
+export function populateTasks(tasks, cardTemplate, filter) {
+  const taskContainer = document.querySelector(".task-container");
+  taskContainer.innerHTML = "";
+
+  const filteredTask = filterList(tasks, filter);
+  filteredTask.forEach((task) => {
+    const div = document.createElement("div");
+    div.className = "task-card";
+    div.innerHTML = cardTemplate(task, getDueLabel(task.due, false));
+
+    taskContainer.appendChild(div);
+  });
+}
+
+export function generateTimestampId() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 11);
+}
+
 export function saveTask(formData) {
   const dueDate = new Date(`${formData.dueDate}T${formData.dueTime}:00`);
   const timezoneOffset = dueDate.getTimezoneOffset() * 60000;
@@ -90,6 +127,7 @@ export function saveTask(formData) {
     due: formattedDue,
     category: formData.category.trim(),
     isCompleted: false,
+    uniqueId: formData.uniqueId,
   };
 
   saveToLocalStorage(dataToSave);
@@ -100,7 +138,8 @@ function saveToLocalStorage(dataToSave) {
 
   if (data) {
     const tasks = JSON.parse(data);
-    tasks.push(JSON.stringify(dataToSave));
+    tasks.push(dataToSave);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   } else {
     localStorage.setItem("tasks", JSON.stringify([dataToSave]));
   }
