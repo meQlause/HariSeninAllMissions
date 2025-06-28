@@ -1,254 +1,261 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="assets/style.css" rel="stylesheet">
+    <link href="assets/styles.css" rel="stylesheet" />
     <title>TaskFlow - To-Do List</title>
   </head>
   <body class="bg-gray-50">
     <div id="app">
       <div class="flex h-screen bg-gray-50">
-    <!-- Sidebar -->
-    <div class="w-80 bg-white shadow-lg border-r border-gray-200 flex flex-col">
-      <!-- Sidebar Header -->
-      <div class="p-6 border-b border-gray-200">
-        <h1 class="text-2xl font-bold text-gray-800 mb-2">TaskFlow</h1>
-        <p class="text-sm text-gray-600">Organize your tasks efficiently</p>
-      </div>
-      
-      <!-- Add Task Section -->
-      <div class="p-4 border-b border-gray-200">
-        <a href="add-task.html" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center">
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-          </svg>
-          Add New Task
-        </a>
-      </div>
-      
-      <!-- Navigation -->
-      <nav class="flex-1 p-4 space-y-2">
-        <div class="sidebar-item active">
-          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-          </svg>
-          <span>All Tasks</span>
-          <span class="ml-auto bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full">12</span>
-        </div>
-        
-        <div class="sidebar-item">
-          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-          </svg>
-          <span>Today</span>
-          <span class="ml-auto bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full">5</span>
-        </div>
-        
-        <div class="sidebar-item">
-          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-          </svg>
-          <span>Upcoming</span>
-          <span class="ml-auto bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded-full">3</span>
-        </div>
-        
-        <div class="sidebar-item">
-          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-          <span>Completed</span>
-          <span class="ml-auto bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">8</span>
-        </div>
-        
-        <div class="sidebar-item">
-          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-          </svg>
-          <span>Important</span>
-          <span class="ml-auto bg-red-100 text-red-700 text-xs px-2 py-1 rounded-full">2</span>
-        </div>
-      </nav>
-      
-      <!-- Stats Section -->
-      <div class="p-4 border-t border-gray-200">
-        <div class="bg-gray-50 rounded-lg p-4">
-          <h3 class="text-sm font-medium text-gray-700 mb-3">Today's Progress</h3>
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-sm">
-              <span class="text-gray-600">Completed</span>
-              <span class="font-medium text-green-600">5 of 8</span>
-            </div>
-            <div class="w-full bg-gray-200 rounded-full h-2">
-              <div class="bg-green-500 h-2 rounded-full" style="width: 62%"></div>
-            </div>
+        <!-- Sidebar -->
+        <div
+          class="w-80 bg-white shadow-lg border-r border-gray-200 flex flex-col"
+        >
+          <!-- Sidebar Header -->
+          <div class="p-6 border-b border-gray-200">
+            <h1 class="text-2xl font-bold text-gray-800 mb-2">TaskFlow</h1>
+            <p class="text-sm text-gray-600">Organize your tasks efficiently</p>
           </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Main Content -->
-    <div class="flex-1 flex flex-col">
-      <!-- Header -->
-      <header class="bg-white shadow-sm border-b border-gray-200 p-6">
-        <div class="flex items-center justify-between mb-4">
-          <div>
-            <h2 class="text-2xl font-bold text-gray-800">All Tasks</h2>
-            <p class="text-gray-600 mt-1">You have 12 tasks remaining</p>
-          </div>
-          
-          <div class="flex items-center space-x-4">
-            <!-- Search Bar -->
-            <div class="relative">
-              <input 
-                type="text" 
-                placeholder="Search tasks..." 
-                class="w-80 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-              <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+
+          <!-- Add Task Section -->
+          <div class="p-4 border-b border-gray-200">
+            <a
+            href="add-task.html"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center"
+            >
+            <svg
+                class="w-5 h-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                ></path>
               </svg>
+              Add New Task
+            </a>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="flex-1 p-4 space-y-2">
+            <div class="sidebar-item active" onclick="handleSidebarClick('allItem')">
+              <svg
+              class="w-5 h-5 mr-3"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              >
+                <path
+                stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                  ></path>
+              </svg>
+              <span>All Tasks</span>
+              <span
+              class="ml-auto bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full"
+              >12</span
+              >
+            </div>
+
+            <div class="sidebar-item" onclick="handleSidebarClick('Important')">
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                ></path>
+              </svg>
+              <span>Important</span>
+              <span
+                class="ml-auto bg-red-100 text-red-700 text-xs px-2 py-1 rounded-full"
+                >2</span
+              >
             </div>
             
-            <button class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200">
-              <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path>
+            <div class="sidebar-item" onclick="handleSidebarClick('Today')">
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                ></path>
               </svg>
-              Sort
-            </button>
-          </div>
-        </div>
-      </header>
-      
-      <!-- Task List -->
-      <main class="flex-1 overflow-y-auto p-6">
-        <div class="space-y-4 max-w-4xl mx-auto">
+              <span>Today</span>
+              <span
+                class="ml-auto bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full"
+                >5</span
+              >
+            </div>
 
-          <!-- Task Items -->
-          <div class="task-card">
-            <div class="flex items-start">
-              <input type="checkbox" class="mt-1 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-              <div class="ml-3 flex-1">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-lg font-medium text-gray-800">Review project proposals</h3>
-                  <span class="priority-high text-xs px-2 py-1 rounded-full font-medium border">High</span>
-                </div>
-                <p class="text-gray-600 mt-1">Review all submitted project proposals and provide feedback by end of day</p>
-                <div class="flex items-center mt-3 text-sm text-gray-500">
-                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>   
-                  </svg>
-                  Due Today
-                  <span class="mx-2">•</span>
-                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                  </svg>
-                  Work
-                </div>
-              </div>
+            <div class="sidebar-item" onclick="handleSidebarClick('Upcoming')">
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                ></path>
+              </svg>
+              <span>Upcoming</span>
+              <span
+                class="ml-auto bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded-full"
+                >3</span
+              >
             </div>
-          </div>
-          
-          <div class="task-card">
-            <div class="flex items-start">
-              <input type="checkbox" class="mt-1 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-              <div class="ml-3 flex-1">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-lg font-medium text-gray-800">Update website design</h3>
-                  <span class="priority-medium text-xs px-2 py-1 rounded-full font-medium border">Medium</span>
-                </div>
-                <p class="text-gray-600 mt-1">Implement the new color scheme and update the homepage layout</p>
-                <div class="flex items-center mt-3 text-sm text-gray-500">
-                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                  </svg>
-                  Due Tomorrow
-                  <span class="mx-2">•</span>
-                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                  </svg>
-                  Design
-                </div>
-              </div>
+
+            <div class="sidebar-item" onclick="handleSidebarClick('Completed')">
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span>Completed</span>
+              <span
+                class="ml-auto bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full"
+                >8</span
+              >
             </div>
-          </div>
-          
-          <div class="task-card">
-            <div class="flex items-start">
-              <input type="checkbox" checked class="mt-1 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-              <div class="ml-3 flex-1">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-lg font-medium text-gray-800 line-through opacity-60">Team meeting preparation</h3>
-                  <span class="priority-low text-xs px-2 py-1 rounded-full font-medium border">Low</span>
-                </div>
-                <p class="text-gray-600 mt-1 opacity-60">Prepare agenda and gather materials for weekly team meeting</p>
-                <div class="flex items-center mt-3 text-sm text-gray-500">
-                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                  Completed
-                  <span class="mx-2">•</span>
-                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                  </svg>
-                  Meetings
-                </div>
-              </div>
+
+
+            <div class="sidebar-item" onclick="handleSidebarClick('Overdue')">
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4m0 4h.01M12 3a9 9 0 100 18 9 9 0 000-18z"
+                />
+              </svg>
+              <span>Overdue</span>
+              <span
+                class="ml-auto bg-rose-100 text-orange-600 text-xs px-2 py-1 rounded-full"
+                >2</span
+              >
             </div>
-          </div>
-          
-          <div class="task-card">
-            <div class="flex items-start">
-              <input type="checkbox" class="mt-1 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-              <div class="ml-3 flex-1">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-lg font-medium text-gray-800">Code review for feature branch</h3>
-                  <span class="priority-medium text-xs px-2 py-1 rounded-full font-medium border">Medium</span>
+          </nav>
+
+          <!-- Stats Section -->
+          <div class="p-4 border-t border-gray-200">
+            <div class="bg-gray-50 rounded-lg p-4">
+              <h3 class="text-sm font-medium text-gray-700 mb-3">
+                Today's Progress
+              </h3>
+              <div class="space-y-3">
+                <div class="flex items-center justify-between text-sm">
+                  <span class="text-gray-600">Completed</span>
+                  <span class="font-medium text-green-600">5 of 8</span>
                 </div>
-                <p class="text-gray-600 mt-1">Review pull request #142 for the new authentication feature</p>
-                <div class="flex items-center mt-3 text-sm text-gray-500">
-                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                  </svg>
-                  Due in 2 days
-                  <span class="mx-2">•</span>
-                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                  </svg>
-                  Development
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="task-card">
-            <div class="flex items-start">
-              <input type="checkbox" class="mt-1 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-              <div class="ml-3 flex-1">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-lg font-medium text-gray-800">Grocery shopping</h3>
-                  <span class="priority-low text-xs px-2 py-1 rounded-full font-medium border">Low</span>
-                </div>
-                <p class="text-gray-600 mt-1">Buy ingredients for weekend meal prep and household essentials</p>
-                <div class="flex items-center mt-3 text-sm text-gray-500">
-                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                  </svg>
-                  Due This Weekend
-                  <span class="mx-2">•</span>
-                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                  </svg>
-                  Personal
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    class="bg-green-500 h-2 rounded-full"
+                    style="width: 62%"
+                  ></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </main>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+          <!-- Header -->
+          <header class="bg-white shadow-sm border-b border-gray-200 p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h2 class="text-2xl font-bold text-gray-800">All Tasks</h2>
+                <p class="text-gray-600 mt-1">You have 12 tasks remaining</p>
+              </div>
+
+              <div class="flex items-center space-x-4">
+                <!-- Search Bar -->
+                <div class="relative">
+                  <input
+                    type="text"
+                    placeholder="Search tasks..."
+                    class="w-80 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                  <svg
+                    class="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    ></path>
+                  </svg>
+                </div>
+
+                <button
+                  class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                >
+                  <svg
+                    class="w-4 h-4 inline mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 9l4-4 4 4m0 6l-4 4-4-4"
+                    ></path>
+                  </svg>
+                  Sort
+                </button>
+              </div>
+            </div>
+          </header>
+
+          <!-- Task List -->
+          <main class="flex-1 overflow-y-auto p-6">
+            <div class="space-y-4 max-w-4xl mx-auto task-container"></div>
+          </main>
+        </div>
+      </div>
     </div>
-  </div>
-    </div>
-    <script type="module" src="/main.js"></script>
+    <script src="assets/script.js"></script>
   </body>
 </html>
