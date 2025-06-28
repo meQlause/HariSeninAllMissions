@@ -10,8 +10,14 @@ Mission4_/
 │   ├── styles.css         # CSS styles and Tailwind CSS
 │   ├── template.js        # HTML templates and components
 │   └── helper.js          # Utility functions and helpers
-└── README.md  
+└── README.md
 ```
+
+## ⚠️ Local Storage Warning
+
+**Important Information About Data Storage:**
+
+This application uses **localStorage** to store all task data locally in your web browser. Please be aware of the following:
 
 ## Getting Started
 

@@ -263,13 +263,14 @@ export const addTaskTemplate = () => {
                       for="due-date"
                       class="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Due Date
+                      Due Date *
                     </label>
                     <input
                       type="date"
                       id="due-date"
                       name="due-date"
                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      required
                     />
                   </div>
 
@@ -279,72 +280,15 @@ export const addTaskTemplate = () => {
                       for="due-time"
                       class="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Due Time
+                      Due Time *
                     </label>
                     <input
                       type="time"
                       id="due-time"
                       name="due-time"
                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      required
                     />
-                  </div>
-                </div>
-              </div>
-
-              <!-- Tags -->
-              <div
-                class="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
-              >
-                <h3 class="text-lg font-medium text-gray-800 mb-4">Tags</h3>
-                <div>
-                  <input
-                    type="text"
-                    id="tags"
-                    name="tags"
-                    placeholder="Add tags separated by commas (e.g., urgent, client, review)"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                  <p class="text-sm text-gray-500 mt-2">
-                    Tags help you organize and find tasks quickly
-                  </p>
-                </div>
-
-                <!-- Popular Tags -->
-                <div class="mt-4">
-                  <p class="text-sm font-medium text-gray-700 mb-2">
-                    Popular Tags:
-                  </p>
-                  <div class="flex flex-wrap gap-2">
-                    <button
-                      type="button"
-                      class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors duration-200"
-                    >
-                      urgent
-                    </button>
-                    <button
-                      type="button"
-                      class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors duration-200"
-                    >
-                      client
-                    </button>
-                    <button
-                      type="button"
-                      class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors duration-200"
-                    >
-                      review
-                    </button>
-                    <button
-                      type="button"
-                      class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors duration-200"
-                    >
-                      meeting
-                    </button>
-                    <button
-                      type="button"
-                      class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors duration-200"
-                    >
-                      follow-up
-                    </button>
                   </div>
                 </div>
               </div>
@@ -366,7 +310,7 @@ export const addTaskTemplate = () => {
                   </a>
                   <button
                     type="submit"
-                    class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium flex items-center"
+                    class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium flex items-center cursor-pointer"
                   >
                     <svg
                       class="w-5 h-5 mr-2"

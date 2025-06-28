@@ -1,15 +1,17 @@
+import { getTasks } from "./mockUp.js";
 import {
   addTaskTemplate,
   containerTemplate,
   itemCardTemplate,
   statsTemplate,
-} from "./template.js";
+} from "./templates.js";
 import {
   filterList,
   getDueLabel,
   removeActiveSidebar,
   getNumbersOf,
-} from "./helper.js";
+  saveTask,
+} from "./helpers.js";
 
 const handleSidebarClick = (filter) => {
   removeActiveSidebar(false);
@@ -21,7 +23,7 @@ const handleSidebarClick = (filter) => {
   const taskContainer = document.querySelector(".task-container");
   taskContainer.innerHTML = "";
 
-  const filteredTask = filterList(tasks, filter);
+  const filteredTask = filterList(getTasks(), filter);
   filteredTask.forEach((task) => {
     const div = document.createElement("div");
     div.className = "task-card";
@@ -36,93 +38,27 @@ const createNewTask = () => {
 
   const container = document.querySelector(".container");
   container.innerHTML = addTaskTemplate();
+
+  const form = container.querySelector("form");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = {
+      title: document.getElementById("task-title").value,
+      description: document.getElementById("task-description").value,
+      priority: document.getElementById("priority").value,
+      category: document.getElementById("category").value,
+      dueDate: document.getElementById("due-date").value,
+      dueTime: document.getElementById("due-time").value,
+    };
+
+    saveTask(formData);
+    location.reload();
+  });
 };
 
-const tasks = [
-  {
-    title: "Standup Meeting",
-    description: "Daily team standup on Zoom",
-    priority: "High",
-    due: "2025-06-28T09:00:00+07:00",
-    category: "Meetings",
-    isCompleted: false,
-  },
-  {
-    title: "Update GitHub Issues",
-    description: "Review and update issue statuses for sprint",
-    priority: "Medium",
-    due: "2025-06-28T10:30:00+07:00",
-    category: "Development",
-    isCompleted: false,
-  },
-  {
-    title: "Design Review",
-    description: "Review UI mockups with design team",
-    priority: "High",
-    due: "2025-06-28T11:15:00+07:00",
-    category: "Design",
-    isCompleted: false,
-  },
-  {
-    title: "Lunch with team",
-    description: "Team lunch at local restaurant",
-    priority: "Low",
-    due: "2025-06-28T12:30:00+07:00",
-    category: "Personal",
-    isCompleted: false,
-  },
-  {
-    title: "Client Call",
-    description: "Discuss project scope and deliverables",
-    priority: "High",
-    due: "2025-06-28T14:00:00+07:00",
-    category: "Work",
-    isCompleted: false,
-  },
-  {
-    title: "Code Review",
-    description: "Review pull requests and merge changes",
-    priority: "Medium",
-    due: "2025-06-28T15:30:00+07:00",
-    category: "Development",
-    isCompleted: false,
-  },
-  {
-    title: "Prepare Report",
-    description: "Compile progress report for management",
-    priority: "High",
-    due: "2025-06-28T16:45:00+07:00",
-    category: "Finance",
-    isCompleted: false,
-  },
-  {
-    title: "Plan Weekly Tasks",
-    description: "Organize next week's sprint tasks",
-    priority: "Low",
-    due: "2025-06-28T18:00:00+07:00",
-    category: "Work",
-    isCompleted: false,
-  },
-  {
-    title: "Reply Emails",
-    description: "Reply to important pending emails",
-    priority: "Low",
-    due: "2025-06-28T19:15:00+07:00",
-    category: "Admin",
-    isCompleted: false,
-  },
-  {
-    title: "Evening Run",
-    description: "Jog in the park for 30 minutes",
-    priority: "Low",
-    due: "2025-06-28T20:00:00+07:00",
-    category: "Health",
-    isCompleted: true,
-  },
-];
-
 document.addEventListener("DOMContentLoaded", function () {
-  tasks.forEach((item) => {
+  getTasks().forEach((item) => {
     if (getDueLabel(item.due, false) === "Overdue") {
       item.isCompleted = true;
     }
@@ -138,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   document.querySelectorAll(".sidebar-item").forEach((item, index) => {
-    const counts = getNumbersOf(tasks, sidebarOrder[index]);
+    const counts = getNumbersOf(getTasks(), sidebarOrder[index]);
     item.querySelector(".sidebar-number").innerHTML = counts;
     if (counts === 0) {
       item.classList.add("opacity-50");
@@ -147,13 +83,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  const todaysTodo = tasks.filter(
+  const todaysTodo = getTasks().filter(
     (item) => getDueLabel(item.due, true) === "Due Today"
   );
-  const totalComplete = todaysTodo.filter((item) => item.isCompleted === true);
   const totalOverdue = todaysTodo.filter(
     (item) => getDueLabel(item.due, false) === "Overdue"
   );
+  const totalComplete = todaysTodo.filter((item) => item.isCompleted === true);
 
   document.querySelector(".stats").innerHTML = statsTemplate(
     todaysTodo.length ? todaysTodo.length : 0,
@@ -161,7 +97,11 @@ document.addEventListener("DOMContentLoaded", function () {
     totalOverdue.length ? totalOverdue.length : 0
   );
 
-  handleSidebarClick("allItem");
+  if (filterList(getTasks(), "allItem").length === 0) {
+    createNewTask();
+  } else {
+    handleSidebarClick("allItem");
+  }
 });
 
 window.handleSidebarClick = handleSidebarClick;

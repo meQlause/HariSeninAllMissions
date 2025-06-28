@@ -74,3 +74,34 @@ export function getDueLabel(dueDateStr, passHour) {
     return "Upcoming";
   }
 }
+
+export function saveTask(formData) {
+  const dueDate = new Date(`${formData.dueDate}T${formData.dueTime}:00`);
+  const timezoneOffset = dueDate.getTimezoneOffset() * 60000;
+  const localDate = new Date(dueDate.getTime() - timezoneOffset);
+  const formattedDue = localDate.toISOString().slice(0, 19) + "+07:00";
+
+  const dataToSave = {
+    title: formData.title.trim(),
+    description: formData.description.trim(),
+    priority:
+      formData.priority.trim().charAt(0).toUpperCase() +
+      formData.priority.trim().slice(1).toLowerCase(),
+    due: formattedDue,
+    category: formData.category.trim(),
+    isCompleted: false,
+  };
+
+  saveToLocalStorage(dataToSave);
+}
+
+function saveToLocalStorage(dataToSave) {
+  const data = localStorage.getItem("tasks");
+
+  if (data) {
+    const tasks = JSON.parse(data);
+    tasks.push(JSON.stringify(dataToSave));
+  } else {
+    localStorage.setItem("tasks", JSON.stringify([dataToSave]));
+  }
+}
