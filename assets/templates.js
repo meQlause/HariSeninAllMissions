@@ -43,8 +43,9 @@ export const itemCardTemplate = (task, dueLabel) => {
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>   
                     </svg>
-                    <div class="flex flex-col md:flex-row"> 
-                      <p> ${dueLabel} </p> 
+                    <div class="flex flex-col gap-0 md:gap-1 md:flex-row"> 
+                      <p> ${dueLabel}</p> 
+                      <span class="md:block hidden">-</span>
                       <p>${task.due.split("+")[0].split("T").join(", ")} </p>
                     </div>
                   </div>
@@ -108,8 +109,10 @@ export const containerTemplate = () => {
                 <!-- Search Bar -->
                 <div class="relative -z-0">
                   <input
-                    type="text"
-                    placeholder="Search tasks..."
+                    type="date"
+                    id="date-search"
+                    name="date-search"
+                    placeholder="Search tasks by date..."
                     class="w-full max-w-80 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                   <svg

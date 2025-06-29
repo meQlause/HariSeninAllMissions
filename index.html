@@ -17,7 +17,7 @@
           <!-- Sidebar -->
           <div
             id="sidebar"
-            class="fixed w-70 md:w-80 h-full bg-white shadow-lg border-r border-gray-200 md:block md:relative z-100"
+            class="fixed flex flex-col w-70 md:w-80 h-full bg-white shadow-lg border-r border-gray-200 md:block md:relative z-100"
           >
             <!-- Sidebar Header -->
             <div class="p-6 border-b border-gray-200">
@@ -51,7 +51,7 @@
             </div>
 
             <!-- Navigation -->
-            <nav class="flex-1 p-4 space-y-2">
+            <nav class="flex-1 p-4 space-y-2 mb-6">
               <div
                 class="sidebar-item active"
                 onclick="handleSidebarClick('allItem')"
@@ -187,6 +187,29 @@
               </div>
             </nav>
 
+            <!-- Reset Tasks -->
+            <div class="p-4 border-b border-gray-200">
+              <div
+                class="w-full bg-red-300 hover:bg-red-600 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center cursor-pointer"
+                onclick="resetTasks()"
+              >
+                <svg
+                  class="w-5 h-5 mr-2 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  ></path>
+                </svg>
+                Reset All Task
+              </div>
+            </div>
+
             <!-- Stats Section -->
             <div
               class="flex flex-col gap-5 p-4 border-t border-gray-200 stats"
@@ -195,7 +218,7 @@
         </div>
 
         <!-- Main Content -->
-        <div class="relative flex-1 flex flex-col container"></div>
+        <div class="flex flex-col container"></div>
       </div>
     </div>
     <script src="assets/script.js" type="module"></script>

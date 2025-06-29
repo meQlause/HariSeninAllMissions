@@ -26,7 +26,15 @@ const handleSidebarClick = (filter) => {
   const container = document.querySelector(".container");
   if (container.querySelector(".task-container") === null) {
     initContainer(container, containerTemplate, getTasks(), getSelectedData());
+
+    const dateInput = document.getElementById("date-search");
+    dateInput.addEventListener("change", (event) => {
+      removeActiveSidebar(true);
+      const selectedDate = event.target.value;
+      populateTasks(getTasks(), itemCardTemplate, selectedDate);
+    });
   }
+
   populateTasks(getTasks(), itemCardTemplate, filter);
 
   document.querySelectorAll(".checkbox-state").forEach((box) => {
@@ -41,7 +49,6 @@ const handleSidebarClick = (filter) => {
           selectedData.filter((val) => val !== box.dataset.index)
         );
       }
-      localStorage.setItem("test", JSON.stringify(getSelectedData()));
       if (getSelectedData().length === 0) {
         const item = container.querySelector(".save-button");
         item.classList.remove("cursor-pointer");
@@ -88,6 +95,11 @@ const createNewTask = (hideSidebar) => {
     saveTask(formData);
     location.reload();
   });
+};
+
+const resetTasks = () => {
+  localStorage.removeItem("tasks");
+  location.reload();
 };
 
 const toggleSidebar = () => {
@@ -145,3 +157,4 @@ document.addEventListener("DOMContentLoaded", function () {
 window.handleSidebarClick = handleSidebarClick;
 window.createNewTask = createNewTask;
 window.toggleSidebar = toggleSidebar;
+window.resetTasks = resetTasks;

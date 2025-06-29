@@ -42,6 +42,8 @@ export function filterList(tasks, filter) {
       return activeTask.filter(
         (item) => getDueLabel(item.due, false) === "Upcoming"
       );
+    default:
+      return tasks.filter((item) => item.due.split("T")[0] === filter);
   }
 }
 
