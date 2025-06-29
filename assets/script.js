@@ -202,11 +202,16 @@ const loadProfile = () => {
 document.addEventListener("DOMContentLoaded", function () {
   loadProfile();
 
-  getTasks().forEach((item) => {
-    if (getDueLabel(item.due, false) === "Overdue") {
-      item.isCompleted = true;
-    }
-  });
+  if (getTasks()) {
+    const updatedData = getTasks().map((item) => {
+      if (getDueLabel(item.due, false) === "Overdue") {
+        item.isCompleted = true;
+      }
+      return item;
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(updatedData));
+  }
 
   const sidebarOrder = [
     "allItem",
