@@ -85,12 +85,12 @@ export function initContainer(container, template, task, selectedtask) {
         }
       });
     });
-    purgethenSaveToLocalStorage(task);
+    purgeThenSaveToLocalStorage(task);
     location.reload();
   });
 }
 
-function purgethenSaveToLocalStorage(dataToSave) {
+function purgeThenSaveToLocalStorage(dataToSave) {
   localStorage.setItem("tasks", JSON.stringify(dataToSave));
 }
 

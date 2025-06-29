@@ -19,6 +19,10 @@ import {
 const handleSidebarClick = (filter) => {
   removeActiveSidebar(false);
 
+  if (window.length < 768) {
+    toggleSidebar();
+  }
+
   const container = document.querySelector(".container");
   if (container.querySelector(".task-container") === null) {
     initContainer(container, containerTemplate, getTasks(), getSelectedData());
@@ -37,12 +41,32 @@ const handleSidebarClick = (filter) => {
           selectedData.filter((val) => val !== box.dataset.index)
         );
       }
+      localStorage.setItem("test", JSON.stringify(getSelectedData()));
+      if (getSelectedData().length === 0) {
+        const item = container.querySelector(".save-button");
+        item.classList.remove("cursor-pointer");
+        item.classList.add("opacity-50");
+        item.classList.add("pointer-events-none");
+        item.classList.add("cursor-not-allowed");
+      } else {
+        const item = container.querySelector(".save-button");
+        item.classList.add("cursor-pointer");
+        item.classList.remove("cursor-not-allowed");
+        item.classList.remove("opacity-50");
+        item.classList.remove("pointer-events-none");
+      }
     });
   });
 };
 
-const createNewTask = () => {
+const createNewTask = (hideSidebar) => {
   removeActiveSidebar(true);
+
+  if (hideSidebar === true) {
+    if (window.length < 768) {
+      toggleSidebar();
+    }
+  }
 
   const container = document.querySelector(".container");
   container.innerHTML = addTaskTemplate();
@@ -66,12 +90,9 @@ const createNewTask = () => {
   });
 };
 
-const showSidebar = () => {
+const toggleSidebar = () => {
   const sidebar = document.getElementById("sidebar");
-
-  localStorage.setItem("a", JSON.stringify(sidebar.classList));
   sidebar.classList.toggle("hidden");
-  localStorage.setItem("b", JSON.stringify(sidebar.classList));
 };
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -115,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
   if (filterList(getTasks(), "allItem").length === 0) {
-    createNewTask();
+    createNewTask(true);
   } else {
     handleSidebarClick("allItem");
   }
@@ -123,4 +144,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
 window.handleSidebarClick = handleSidebarClick;
 window.createNewTask = createNewTask;
-window.showSidebar = showSidebar;
+window.toggleSidebar = toggleSidebar;

@@ -74,12 +74,12 @@ export const statsTemplate = (todaysTodo, totalComplete, totalOverdue) => {
     <div class="flex items-center justify-between text-sm">
       <span class="text-gray-600">Completed</span>
       <span class="font-medium text-green-600">
-      ${totalComplete - totalOverdue} of 
-      ${todaysTodo}</span>
+        ${totalComplete - totalOverdue} of 
+        ${todaysTodo}</span>
       <span class="text-gray-600">Overdue</span>
       <span class="font-medium text-red-600">
-      ${totalOverdue} of 
-      ${todaysTodo}</span>
+        ${totalOverdue} of 
+        ${todaysTodo}</span>
     </div>
     <div class="flex flex-row w-full bg-gray-200 rounded-full h-2">
       <div
@@ -128,7 +128,7 @@ export const containerTemplate = () => {
                 </div>
 
                 <div
-                  class="flex flex-row mr-auto items-center justify-center px-3 w-32 py-2 text-sm bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-white font-medium cursor-pointer save-button"
+                  class="flex flex-row mr-auto items-center justify-center px-3 w-48 py-2 text-sm bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-white font-medium save-button opacity-50 pointer-events-none cursor-not-allowed"
                 >
                   <svg
                     class="w-5 h-5 mr-2 mt-0.5"
@@ -143,11 +143,11 @@ export const containerTemplate = () => {
                       d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                     ></path>
                   </svg>
-                  Completed
+                  Mark as Completed
                 </div>
               </div>
             </div>
-              <button id="hamburger-btn" class="p-2 rounded hover:bg-gray-200 h-10 block md:hidden cursor-pointer" onClick="showSidebar()">
+              <button id="hamburger-btn" class="p-2 rounded hover:bg-gray-200 h-10 block md:hidden cursor-pointer" onClick="toggleSidebar()">
                 <i class="fa fa-bars text-[1.5rem]"></i>
               </button>
             </header>
@@ -164,17 +164,20 @@ export const containerTemplate = () => {
 export const addTaskTemplate = () => {
   return `
         <!-- Header -->
-        <header class="bg-white shadow-sm border-b border-gray-200 p-6">
+        <header class="md:block flex flex-row justify-between bg-white shadow-sm border-b border-gray-200 p-6">
           <div class="flex items-center justify-between">
             <div class="flex items-center">
               <div>
                 <h2 class="text-2xl font-bold text-gray-800">Add New Task</h2>
-                <p class="text-gray-600 mt-1">
+                <p class="text-gray-600 mt-1 max-w-40 md:max-w-80">
                   Create a new task to stay organized
                 </p>
               </div>
             </div>
           </div>
+          <button id="hamburger-btn" class="p-2 rounded hover:bg-gray-200 h-10 block md:hidden cursor-pointer" onClick="toggleSidebar()">
+            <i class="fa fa-bars text-[1.5rem]"></i>
+          </button>
         </header>
 
         <!-- Add Task Form -->
@@ -307,26 +310,28 @@ export const addTaskTemplate = () => {
               </div>
 
               <!-- Action Buttons -->
-              <div class="flex items-center justify-between">
+              <div class="flex flex-col md:flex-row gap-5 items-center justify-between">
+              <div class="flex items-center justify-between space-x-4">
                 <a
                   href="index.html"
                   class="px-6 py-3 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-200 transition-colors duration-200 font-medium"
                 >
                   Cancel
                 </a>
-                <div class="flex items-center justify-between space-x-4">
-                  <a
+                  <button
                     href="index.html"
-                    class="px-6 py-3 text-red-600 border border-gray-300 rounded-lg hover:bg-red-200 transition-colors duration-200 font-medium"
+                    class="px-6 py-3 text-red-600 border border-gray-300 rounded-lg hover:bg-red-200 transition-colors duration-200 font-medium cursor-pointer"
+                    onclick="createNewTask(false)"
                   >
                     Reset
-                  </a>
+                  </button>
+                  </div>
                   <button
                     type="submit"
-                    class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium flex items-center cursor-pointer"
+                    class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium flex justify-center md:justify-start items-center cursor-pointer w-full md:max-w-48"
                   >
                     <svg
-                      class="w-5 h-5 mr-2"
+                      class="w-5 h-5 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -340,7 +345,6 @@ export const addTaskTemplate = () => {
                     </svg>
                     Create Task
                   </button>
-                </div>
               </div>
             </form>
           </div>
