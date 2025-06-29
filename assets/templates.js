@@ -419,12 +419,12 @@ export const noDataTemplate = (filter) => {
         </svg>
         <h3 class="text-lg font-medium text-gray-900 mb-2">${getMessage()}</h3>
         <p class="text-gray-500 mb-6">Get started by creating your first task to stay organized and productive.</p>
-        <a href="add-task.html" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium">
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium cursor-pointer" onClick="createNewTask(true)">
+          <svg class="w-5 h-5 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
           </svg>
           Create New Task
-        </a>
+        </button>
       </div>
     </div>
   `;

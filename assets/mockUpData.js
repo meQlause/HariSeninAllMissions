@@ -103,7 +103,7 @@ export function setSelectedData(newData) {
 
 export const getTasks = () => {
   let data = JSON.parse(
-    localStorage.getItem("tasks") ? localStorage.getItem("tasks") : []
+    localStorage.getItem("tasks") ? localStorage.getItem("tasks") : "[]"
   );
   return data;
 };
