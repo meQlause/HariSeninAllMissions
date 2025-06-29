@@ -4,6 +4,8 @@ import {
   containerTemplate,
   itemCardTemplate,
   statsTemplate,
+  taskDetailsTemplate,
+  noDataTemplate,
 } from "./templates.js";
 import {
   filterList,
@@ -31,23 +33,29 @@ const handleSidebarClick = (filter) => {
     dateInput.addEventListener("change", (event) => {
       removeActiveSidebar(true);
       const selectedDate = event.target.value;
-      populateTasks(getTasks(), itemCardTemplate, selectedDate);
+      populateTasks(getTasks(), itemCardTemplate, noDataTemplate, selectedDate);
     });
   }
 
-  populateTasks(getTasks(), itemCardTemplate, filter);
+  populateTasks(getTasks(), itemCardTemplate, noDataTemplate, filter);
 
   document.querySelectorAll(".checkbox-state").forEach((box) => {
     box.addEventListener("change", () => {
       if (box.checked === true) {
         let selectedData = getSelectedData();
-        selectedData.push(box.dataset.index);
+        selectedData.push(box.dataset.hash);
         setSelectedData(selectedData);
+        document.querySelectorAll(`.${box.dataset.hash}`).forEach((item) => {
+          localStorage.setItem("ardial", box.dataset.hash);
+          item.classList.add("line-through");
+        });
       } else {
         let selectedData = getSelectedData();
-        setSelectedData(
-          selectedData.filter((val) => val !== box.dataset.index)
-        );
+        setSelectedData(selectedData.filter((val) => val !== box.dataset.hash));
+        document.querySelectorAll(`.${box.dataset.hash}`).forEach((item) => {
+          localStorage.setItem("ardial", box.dataset.hash);
+          item.classList.remove("line-through");
+        });
       }
       if (getSelectedData().length === 0) {
         const item = container.querySelector(".save-button");
@@ -98,8 +106,13 @@ const createNewTask = (hideSidebar) => {
 };
 
 const resetTasks = () => {
-  localStorage.removeItem("tasks");
-  location.reload();
+  const confirmReset = confirm(
+    "Are you sure you want to reset all tasks? This action cannot be undone."
+  );
+  if (confirmReset) {
+    localStorage.removeItem("tasks");
+    location.reload();
+  }
 };
 
 const toggleSidebar = () => {
@@ -107,7 +120,88 @@ const toggleSidebar = () => {
   sidebar.classList.toggle("hidden");
 };
 
+const showTaskDetails = (taskId) => {
+  localStorage.setItem("ardial", "1");
+  const tasks = getTasks();
+  const task = tasks.find((t) => t.uniqueId === taskId);
+
+  const container = document.querySelector(".container");
+  container.innerHTML = taskDetailsTemplate(task, getDueLabel(task.due, false));
+};
+
+const goBack = () => {
+  location.reload();
+};
+
+const markAsCompleted = (taskId) => {
+  const tasks = getTasks();
+  const taskIndex = tasks.findIndex((t) => t.uniqueId === taskId);
+
+  if (taskIndex !== -1) {
+    tasks[taskIndex].isCompleted = true;
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    location.reload();
+  }
+};
+
+const deleteTask = (taskId) => {
+  if (confirm("Are you sure you want to delete this task?")) {
+    const tasks = getTasks();
+    const filteredTasks = tasks.filter((t) => t.uniqueId !== taskId);
+    localStorage.setItem("tasks", JSON.stringify(filteredTasks));
+    location.reload();
+  }
+};
+
+const formatText = (text) => {
+  if (!text) return "";
+
+  return text
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+};
+
+const editProfile = () => {
+  const currentName = document.getElementById("user-name").textContent;
+  const currentPosition = document.getElementById("user-position").textContent;
+
+  const newName = prompt("Enter your name (one word):", currentName);
+  if (newName !== null && newName.trim() !== "") {
+    const newPosition = prompt(
+      "Enter your job title (max 2 words):",
+      currentPosition
+    );
+    if (newPosition !== null) {
+      const formattedName = formatText(newName.trim().split(" ")[0]);
+      const formattedPosition = formatText(
+        newPosition.trim().split(" ").slice(0, 2).join(" ")
+      );
+
+      localStorage.setItem("userName", formattedName);
+      localStorage.setItem("userPosition", formattedPosition);
+
+      document.getElementById("user-name").textContent = formattedName;
+      document.getElementById("user-position").textContent = formattedPosition;
+    }
+  }
+};
+
+const loadProfile = () => {
+  const savedName = localStorage.getItem("userName");
+  const savedPosition = localStorage.getItem("userPosition");
+
+  if (savedName) {
+    document.getElementById("user-name").textContent = savedName;
+  }
+  if (savedPosition) {
+    document.getElementById("user-position").textContent = savedPosition;
+  }
+};
+
 document.addEventListener("DOMContentLoaded", function () {
+  loadProfile();
+
   getTasks().forEach((item) => {
     if (getDueLabel(item.due, false) === "Overdue") {
       item.isCompleted = true;
@@ -158,3 +252,9 @@ window.handleSidebarClick = handleSidebarClick;
 window.createNewTask = createNewTask;
 window.toggleSidebar = toggleSidebar;
 window.resetTasks = resetTasks;
+window.showTaskDetails = showTaskDetails;
+window.goBack = goBack;
+window.markAsCompleted = markAsCompleted;
+window.deleteTask = deleteTask;
+window.editProfile = editProfile;
+window.loadProfile = loadProfile;

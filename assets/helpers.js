@@ -96,17 +96,23 @@ function purgeThenSaveToLocalStorage(dataToSave) {
   localStorage.setItem("tasks", JSON.stringify(dataToSave));
 }
 
-export function populateTasks(tasks, cardTemplate, filter) {
+export function populateTasks(tasks, cardTemplate, noDataTemplate, filter) {
   const taskContainer = document.querySelector(".task-container");
   taskContainer.innerHTML = "";
 
   const filteredTask = filterList(tasks, filter);
+
+  if (filteredTask.length === 0) {
+    taskContainer.innerHTML = noDataTemplate(filter);
+    return;
+  }
+
   filteredTask.forEach((task) => {
     const div = document.createElement("div");
-    div.className = "task-card";
+    div.className = `bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200`;
     div.innerHTML = cardTemplate(task, getDueLabel(task.due, false));
 
-    taskContainer.appendChild(div);
+    taskContainer.append(div);
   });
 }
 
