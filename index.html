@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <link href="assets/styles.css" rel="stylesheet" />
     <link
       rel="stylesheet"
@@ -17,35 +23,89 @@
           <!-- Sidebar -->
           <div
             id="sidebar"
-            class="fixed flex flex-col w-70 md:w-80 h-full bg-white shadow-lg border-r border-gray-200 md:block md:relative z-100"
+            class="fixed w-70 md:w-80 h-full bg-white shadow-lg border-r border-gray-200 md:block md:relative z-100 justify-between"
           >
-            <!-- Sidebar Header -->
-            <div
-              class="p-6 border-b border-gray-200 bg-gradient-to-br from-blue-50 to-indigo-50"
-            >
-              <div class="flex items-start justify-between">
-                <div class="flex-1 min-w-0 max-w-full">
-                  <h1
-                    class="text-xl font-bold text-gray-800 mb-1 truncate bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text max-w-full overflow-hidden"
-                    id="user-name"
+            <div class="flex flex-col justify-between h-full">
+              <!-- Sidebar Header -->
+              <div
+                class="p-6 border-b border-gray-200 bg-gradient-to-br from-blue-50 to-indigo-50"
+              >
+                <div class="flex items-start justify-between">
+                  <div class="flex-1 min-w-0 max-w-full">
+                    <div class="mb-1">
+                      <span
+                        id="today-date"
+                        class="text-xs text-gray-500 font-medium"
+                      ></span>
+                    </div>
+                    <h1
+                      class="text-xl font-bold text-gray-800 mb-1 truncate bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text max-w-full overflow-hidden"
+                      id="user-name"
+                    >
+                      John Doe
+                    </h1>
+                    <p
+                      class="text-sm text-gray-600 truncate font-medium max-w-full overflow-hidden"
+                      id="user-position"
+                    >
+                      Senior Software Developer
+                    </p>
+                    <div class="flex items-center mt-2"></div>
+                  </div>
+                  <button
+                    onclick="editProfile()"
+                    class="ml-3 p-2.5 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300 flex-shrink-0 cursor-pointer border border-gray-200 bg-white/50 backdrop-blur-sm"
+                    title="Edit Profile"
                   >
-                    John Doe
-                  </h1>
-                  <p
-                    class="text-sm text-gray-600 truncate font-medium max-w-full overflow-hidden"
-                    id="user-position"
-                  >
-                    Senior Software Developer
-                  </p>
-                  <div class="flex items-center mt-2"></div>
+                    <svg
+                      class="w-5 h-5 text-gray-600 hover:text-blue-600 transition-colors duration-200"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                      ></path>
+                    </svg>
+                  </button>
                 </div>
-                <button
-                  onclick="editProfile()"
-                  class="ml-3 p-2.5 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300 flex-shrink-0 cursor-pointer border border-gray-200 bg-white/50 backdrop-blur-sm"
-                  title="Edit Profile"
+              </div>
+
+              <div
+                class="flex border-b border-gray-200 flex-row justify-evenly mx-auto"
+              >
+                <!-- Add Task Section -->
+                <div class="p-4">
+                  <div
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center cursor-pointer"
+                    onclick="createNewTask(true)"
+                  >
+                    Add Task
+                  </div>
+                </div>
+
+                <!-- Reset Tasks -->
+                <div class="p-4">
+                  <div
+                    class="w-full bg-red-300 hover:bg-red-600 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center cursor-pointer"
+                    onclick="resetTasks()"
+                  >
+                    Reset Tasks
+                  </div>
+                </div>
+              </div>
+
+              <!-- Navigation -->
+              <nav class="flex-1 p-4 space-y-2">
+                <div
+                  class="sidebar-item active"
+                  onclick="handleSidebarClick('allItem')"
                 >
                   <svg
-                    class="w-5 h-5 text-gray-600 hover:text-blue-600 transition-colors duration-200"
+                    class="w-5 h-5 mr-3"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -54,200 +114,135 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
                     ></path>
                   </svg>
-                </button>
-              </div>
+                  <span>All Tasks</span>
+                  <span
+                    class="ml-auto bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full sidebar-number"
+                  ></span>
+                </div>
+
+                <div
+                  class="sidebar-item"
+                  onclick="handleSidebarClick('important')"
+                >
+                  <svg
+                    class="w-5 h-5 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                    ></path>
+                  </svg>
+                  <span>Important</span>
+                  <span
+                    class="ml-auto bg-red-100 text-red-700 text-xs px-2 py-1 rounded-full sidebar-number"
+                  ></span>
+                </div>
+
+                <div class="sidebar-item" onclick="handleSidebarClick('today')">
+                  <svg
+                    class="w-5 h-5 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                    ></path>
+                  </svg>
+                  <span>Today</span>
+                  <span
+                    class="ml-auto bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full sidebar-number"
+                  ></span>
+                </div>
+
+                <div
+                  class="sidebar-item"
+                  onclick="handleSidebarClick('upcoming')"
+                >
+                  <svg
+                    class="w-5 h-5 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  <span>Upcoming</span>
+                  <span
+                    class="ml-auto bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded-full sidebar-number"
+                  >
+                  </span>
+                </div>
+
+                <div
+                  class="sidebar-item"
+                  onclick="handleSidebarClick('completed')"
+                >
+                  <svg
+                    class="w-5 h-5 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  <span>Completed</span>
+                  <span
+                    class="ml-auto bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full sidebar-number"
+                  >
+                  </span>
+                </div>
+
+                <div
+                  class="sidebar-item"
+                  onclick="handleSidebarClick('overdue')"
+                >
+                  <svg
+                    class="w-5 h-5 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4m0 4h.01M12 3a9 9 0 100 18 9 9 0 000-18z"
+                    />
+                  </svg>
+                  <span>Overdue</span>
+                  <span
+                    class="ml-auto bg-rose-100 text-orange-600 text-xs px-2 py-1 rounded-full sidebar-number"
+                  ></span>
+                </div>
+              </nav>
+
+              <!-- Stats Section -->
+              <div
+                class="flex flex-col gap-5 p-4 border-t border-gray-200 stats"
+              ></div>
             </div>
-
-            <!-- Add Task Section -->
-            <div class="p-4 border-b border-gray-200">
-              <div
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center cursor-pointer"
-                onclick="createNewTask(true)"
-              >
-                <svg
-                  class="w-5 h-5 mr-2 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                  ></path>
-                </svg>
-                Add New Task
-              </div>
-            </div>
-
-            <!-- Navigation -->
-            <nav class="flex-1 p-4 space-y-2 mb-6">
-              <div
-                class="sidebar-item active"
-                onclick="handleSidebarClick('allItem')"
-              >
-                <svg
-                  class="w-5 h-5 mr-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                  ></path>
-                </svg>
-                <span>All Tasks</span>
-                <span
-                  class="ml-auto bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full sidebar-number"
-                ></span>
-              </div>
-
-              <div
-                class="sidebar-item"
-                onclick="handleSidebarClick('important')"
-              >
-                <svg
-                  class="w-5 h-5 mr-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
-                  ></path>
-                </svg>
-                <span>Important</span>
-                <span
-                  class="ml-auto bg-red-100 text-red-700 text-xs px-2 py-1 rounded-full sidebar-number"
-                ></span>
-              </div>
-
-              <div class="sidebar-item" onclick="handleSidebarClick('today')">
-                <svg
-                  class="w-5 h-5 mr-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                  ></path>
-                </svg>
-                <span>Today</span>
-                <span
-                  class="ml-auto bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full sidebar-number"
-                ></span>
-              </div>
-
-              <div
-                class="sidebar-item"
-                onclick="handleSidebarClick('upcoming')"
-              >
-                <svg
-                  class="w-5 h-5 mr-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  ></path>
-                </svg>
-                <span>Upcoming</span>
-                <span
-                  class="ml-auto bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded-full sidebar-number"
-                >
-                </span>
-              </div>
-
-              <div
-                class="sidebar-item"
-                onclick="handleSidebarClick('completed')"
-              >
-                <svg
-                  class="w-5 h-5 mr-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                <span>Completed</span>
-                <span
-                  class="ml-auto bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full sidebar-number"
-                >
-                </span>
-              </div>
-
-              <div class="sidebar-item" onclick="handleSidebarClick('overdue')">
-                <svg
-                  class="w-5 h-5 mr-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8v4m0 4h.01M12 3a9 9 0 100 18 9 9 0 000-18z"
-                  />
-                </svg>
-                <span>Overdue</span>
-                <span
-                  class="ml-auto bg-rose-100 text-orange-600 text-xs px-2 py-1 rounded-full sidebar-number"
-                ></span>
-              </div>
-            </nav>
-
-            <!-- Reset Tasks -->
-            <div class="p-4 border-b border-gray-200">
-              <div
-                class="w-full bg-red-300 hover:bg-red-600 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center cursor-pointer"
-                onclick="resetTasks()"
-              >
-                <svg
-                  class="w-5 h-5 mr-2 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                  ></path>
-                </svg>
-                Reset All Task
-              </div>
-            </div>
-
-            <!-- Stats Section -->
-            <div
-              class="flex flex-col gap-5 p-4 border-t border-gray-200 stats"
-            ></div>
           </div>
         </div>
 

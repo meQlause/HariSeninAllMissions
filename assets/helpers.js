@@ -19,6 +19,20 @@ export function removeActiveSidebar(isAll) {
   }
 }
 
+export function setTodayDate() {
+  const todayDateSpan = document.getElementById("today-date");
+  if (todayDateSpan) {
+    const today = new Date();
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    todayDateSpan.textContent = today.toLocaleDateString(undefined, options);
+  }
+}
+
 export function filterList(tasks, filter) {
   const activeTask = tasks.filter((item) => item.isCompleted === false);
   switch (filter) {

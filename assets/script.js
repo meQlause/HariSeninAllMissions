@@ -16,6 +16,7 @@ import {
   initContainer,
   generateTimestampId,
   populateTasks,
+  setTodayDate,
 } from "./helpers.js";
 
 const handleSidebarClick = (filter) => {
@@ -200,6 +201,7 @@ const loadProfile = () => {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
+  setTodayDate();
   loadProfile();
 
   if (getTasks()) {
