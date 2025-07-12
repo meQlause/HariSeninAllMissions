@@ -143,13 +143,13 @@ export const containerTemplate = () => {
         
               <div class="flex flex-col gap-3 md:flex-row md:mr-0 mr-auto items-center space-x-4">
                 <!-- Search Bar -->
-                <div class="relative -z-0">
+                <div class="relative -z-0 m-auto">
                   <input
                     type="date"
                     id="date-search"
                     name="date-search"
                     placeholder="Search tasks by date..."
-                    class="w-full max-w-80 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                   <svg
                     class="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
@@ -167,7 +167,7 @@ export const containerTemplate = () => {
                 </div>
 
                 <div
-                  class="flex flex-row mr-auto items-center justify-center px-3 w-48 py-2 text-sm bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-white font-medium save-button opacity-50 pointer-events-none cursor-not-allowed"
+                  class="flex flex-row  items-center justify-center px-3 w-full py-2 text-sm bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-white font-medium save-button opacity-50 pointer-events-none cursor-not-allowed"
                 >
                   <svg
                     class="w-5 h-5 mr-2 mt-0.5"
