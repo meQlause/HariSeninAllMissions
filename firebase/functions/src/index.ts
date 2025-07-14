@@ -16,6 +16,29 @@ app.get("/mainVideoBelajar", (req, res) => {
   res.send(contents);
 });
 
+app.get("/txHistory", async (req, res) => {
+  try {
+    const { userId } = req.query;
+    if (!userId || typeof userId !== "string") {
+      res.status(400).send("userId is required");
+      return;
+    }
+
+    const txs = await db.collection("tx_history").doc(userId).get();
+
+    res.status(200).send({
+      success: true,
+      transactions: txs,
+    });
+  } catch (error: any) {
+    res.status(500).send({
+      success: false,
+      message: "Error fetching transaction history",
+      error: error.message,
+    });
+  }
+});
+
 app.post("/addPendingTx", async (req, res) => {
   try {
     const { userId, productId } = req.body;
@@ -30,6 +53,7 @@ app.post("/addPendingTx", async (req, res) => {
       .set(
         {
           data: FieldValue.arrayUnion(String(productId)),
+          createdAt: new Date(),
         },
         { merge: true }
       );
@@ -52,16 +76,34 @@ app.delete("/removePendingTx", async (req, res) => {
       return;
     }
 
-    await db.collection("pending_txs").doc(userId).delete();
+    const pendingDocRef = db.collection("pending_txs").doc(userId);
+    const pendingDoc = await pendingDocRef.get();
+
+    const txData = pendingDoc.data();
+
+    await db
+      .collection("tx_history")
+      .doc(userId)
+      .set(
+        {
+          data: FieldValue.arrayUnion({
+            ...txData,
+            removedAt: new Date(),
+          }),
+        },
+        { merge: true }
+      );
+
+    await pendingDocRef.delete();
 
     res.status(200).send({
       success: true,
-      message: "Pending transaction removed",
+      message: "Pending transaction moved to history and removed",
     });
   } catch (error: any) {
     res.status(500).send({
       success: false,
-      message: "Error removing pending transaction",
+      message: "Error processing transaction",
       error: error.message,
     });
   }
