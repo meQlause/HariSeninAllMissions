@@ -657,11 +657,6 @@ video {
   margin-bottom: 1.25rem;
 }
 
-.my-7{
-  margin-top: 1.75rem;
-  margin-bottom: 1.75rem;
-}
-
 .mb-1{
   margin-bottom: 0.25rem;
 }
@@ -1226,11 +1221,6 @@ video {
   padding-right: 0.5rem;
 }
 
-.px-3{
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
 .px-4{
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1289,16 +1279,6 @@ video {
 .py-\[8px\]{
   padding-top: 8px;
   padding-bottom: 8px;
-}
-
-.py-1{
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
-.py-0{
-  padding-top: 0px;
-  padding-bottom: 0px;
 }
 
 .pb-3{
@@ -1803,8 +1783,20 @@ footer {
     flex-direction: row;
   }
 
+  .lg\:items-center{
+    align-items: center;
+  }
+
+  .lg\:justify-between{
+    justify-content: space-between;
+  }
+
   .lg\:gap-16{
     gap: 4rem;
+  }
+
+  .lg\:gap-5{
+    gap: 1.25rem;
   }
 
   .lg\:px-20{
@@ -1819,5 +1811,15 @@ footer {
 
   .lg\:pr-\[10vh\]{
     padding-right: 10vh;
+  }
+
+  .lg\:text-bodyMedium{
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .lg\:text-heading6{
+    font-size: 18px;
+    line-height: 24px;
   }
 }
