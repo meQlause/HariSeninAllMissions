@@ -1,7 +1,6 @@
 import type { FormProps } from "../utils/interfaces";
 import type { LoginFormValues, Props, RegisterFormValues, Variant } from "../utils/types";
 import { ButtonUI } from "./UIs/button";
-import { DividerUI } from "./UIs/divider";
 import { EmailInput, PasswordInput, PhoneInput, TextInput } from "./UIs/input";
 import { useForm } from "react-hook-form";
 
@@ -14,15 +13,17 @@ export const FormComponent = ({
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<Variant extends "login" ? LoginFormValues : RegisterFormValues>();
 
   const isRegister = variant === "register";
+  const password = watch("password");
 
   return (
     <form
-      onSubmit={handleSubmit((data) => console.log(data))}
-      className={`space-y-4 ${className}`}
+      onSubmit={handleSubmit((data) => onSubmit?.(data))}
+      className={`flex flex-col gap-3 ${className}`}
       {...props}
     >
       {isRegister && (
@@ -30,7 +31,13 @@ export const FormComponent = ({
           <TextInput
             label="Nama Lengkap"
             className="w-full"
-            registration={register("name")}
+            registration={register("name", {
+              required: "Nama lengkap harus diisi",
+              minLength: {
+                value: 2,
+                message: "Nama lengkap minimal 2 karakter",
+              },
+            })}
             error={errors?.name?.message}
           />
         </>
@@ -39,7 +46,13 @@ export const FormComponent = ({
       <EmailInput
         label="Email"
         className="w-full"
-        registration={register("email")}
+        registration={register("email", {
+          required: "Email harus diisi",
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: "Format email tidak valid",
+          },
+        })}
         error={errors?.email?.message}
       />
 
@@ -47,7 +60,13 @@ export const FormComponent = ({
         <PhoneInput
           label="Nomor Telepon"
           className="w-full"
-          registration={register("phone")}
+          registration={register("phone", {
+            required: "Nomor telepon harus diisi",
+            pattern: {
+              value: /^[0-9]{10,13}$/,
+              message: "Nomor telepon harus 10-13 digit",
+            },
+          })}
           error={errors?.phone?.message}
         />
       )}
@@ -55,7 +74,13 @@ export const FormComponent = ({
       <PasswordInput
         label="Password"
         className="w-full"
-        registration={register("password")}
+        registration={register("password", {
+          required: "Password harus diisi",
+          minLength: {
+            value: 6,
+            message: "Password minimal 6 karakter",
+          },
+        })}
         error={errors?.password?.message}
       />
 
@@ -63,30 +88,33 @@ export const FormComponent = ({
         <PasswordInput
           label="Konfirmasi Password"
           className="w-full"
-          registration={register("passwordConfirmation")}
+          registration={register("passwordConfirmation", {
+            required: "Konfirmasi password harus diisi",
+            minLength: {
+              value: 6,
+              message: "Konfirmasi password minimal 6 karakter",
+            },
+            validate: (value) => {
+              if (value !== password) {
+                return "Konfirmasi password tidak cocok";
+              }
+              return true;
+            },
+          })}
           error={errors?.passwordConfirmation?.message}
         />
       )}
 
       {!isRegister && (
-        <div className="mt-2 flex justify-end">
+        <div className="flex justify-end">
           <a className="font-sans text-bodySmall text-[#4A505C]" href="#">
             Lupa password?
           </a>
         </div>
       )}
-
-      <div className="flex flex-col gap-4 pt-2">
-        <ButtonUI variant="primary">{isRegister ? "Daftar" : "Masuk"}</ButtonUI>
-        <ButtonUI variant="secondary">{isRegister ? "Masuk" : "Daftar"}</ButtonUI>
-
-        <DividerUI />
-
-        <ButtonUI className="border border-gray-200" variant="tertiary">
-          <div className="m-auto flex flex-row items-center justify-center gap-3">
-            <img src="/assets/google-icon.png" />
-            {isRegister ? "Daftar Dengan Google" : "Masuk Dengan Google"}
-          </div>
+      <div className="mt-3">
+        <ButtonUI variant="primary" type="submit">
+          {isRegister ? "Daftar" : "Masuk"}
         </ButtonUI>
       </div>
     </form>

@@ -6,115 +6,90 @@ import { FooterLayout } from "../layouts/footer";
 import { HeaderLayout } from "../layouts/header";
 import { ShowProductComponent } from "../components/showProduct";
 import { PaginationUI } from "../components/UIs/pagination";
+import { getData } from "../services/api/getData";
+import type { CategoryContent, Content } from "../utils/types";
+import { useState } from "react";
 
 export const ProductsPage = () => {
-  const categoryContent: Record<string, React.ReactNode> = {
-    "1": (
-      <div className="ml-1 flex flex-row items-center justify-start gap-5">
-        <CheckboxUI />
-        Pemasaran
-      </div>
-    ),
-    "2": (
-      <div className="ml-1 flex flex-row items-center justify-start gap-5">
-        <CheckboxUI />
-        Digital & Teknologi
-      </div>
-    ),
-    "3": (
-      <div className="ml-1 flex flex-row items-center justify-start gap-5">
-        <CheckboxUI />
-        Pengembangan Diri
-      </div>
-    ),
-    "4": (
-      <div className="ml-1 flex flex-row items-center justify-start gap-5">
-        <CheckboxUI />
-        Manajemen Bisnis
-      </div>
-    ),
+  const { contents } = getData();
+  if (!contents) return <>Error</>;
+
+  const [data, setData] = useState<Content[]>(contents.getRandomizeData(8).data);
+
+  const filter = (filter: string, id: string) => {
+    console.log(filter);
+    setData(contents.getRandomizeData(8).data);
+    document.getElementById(id)?.click();
   };
 
-  const contents = [
+  const categoryContent: CategoryContent[] = [
     {
-      id: 1,
-      contentImage: "assets/contents/content1.jpg",
-      title: "Big Auditor Financial Analyst",
-      description:
-        "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik",
-      avatar: "assets/contents/avatar1.png",
-      name: "Jena Ortega",
-      position: "Senior accountant di Gojek",
-      rating: 3.5,
-      reviewCount: 86,
-      price: "Rp 300K",
+      element: (
+        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI id="1" />
+          Pemasaran
+        </div>
+      ),
+      func: () => filter("pemasaran", "1"),
     },
     {
-      id: 2,
-      contentImage: "assets/contents/content2.jpg",
-      title: "Big Auditor Financial Analyst",
-      description:
-        "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik",
-      avatar: "assets/contents/avatar2.png",
-      name: "Jena Ortega",
-      position: "Senior accountant di Gojek",
-      rating: 3.5,
-      reviewCount: 86,
-      price: "Rp 300K",
+      element: (
+        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI id="2" />
+          Digital & Teknologi
+        </div>
+      ),
+      func: () => filter("digital dan teknologi", "2"),
     },
     {
-      id: 3,
-      contentImage: "assets/contents/content3.jpg",
-      title: "Big Auditor Financial Analyst",
-      description:
-        "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik",
-      avatar: "assets/contents/avatar3.png",
-      name: "Jena Ortega",
-      position: "Senior accountant di Gojek",
-      rating: 3.5,
-      reviewCount: 86,
-      price: "Rp 300K",
+      element: (
+        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI id="3" />
+          Pengembangan Diri
+        </div>
+      ),
+      func: () => filter("pengembangan diri", "3"),
     },
     {
-      id: 4,
-      contentImage: "assets/contents/content4.jpg",
-      title: "Big Auditor Financial Analyst",
-      description:
-        "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik",
-      avatar: "assets/contents/avatar4.png",
-      name: "Jena Ortega",
-      position: "Senior accountant di Gojek",
-      rating: 3.5,
-      reviewCount: 86,
-      price: "Rp 300K",
-    },
-    {
-      id: 5,
-      contentImage: "assets/contents/content5.jpg",
-      title: "Big Auditor Financial Analyst",
-      description:
-        "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik",
-      avatar: "assets/contents/avatar5.png",
-      name: "Jena Ortega",
-      position: "Senior accountant di Gojek",
-      rating: 3.5,
-      reviewCount: 86,
-      price: "Rp 300K",
-    },
-    {
-      id: 6,
-      contentImage: "assets/contents/content6.jpg",
-      title: "Big Auditor Financial Analyst",
-      description:
-        "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik",
-      avatar: "assets/contents/avatar6.png",
-      name: "Jena Ortega",
-      position: "Senior accountant di Gojek",
-      rating: 3.5,
-      reviewCount: 86,
-      price: "Rp 300K",
+      element: (
+        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI id="4" />
+          Manajemen Bisnis
+        </div>
+      ),
+      func: () => filter("manajemen bisnis", "4"),
     },
   ];
+
+  const durasiContent: CategoryContent[] = [
+    {
+      element: (
+        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI id="5" variant="round" />
+          Kurang dari 4 Jam
+        </div>
+      ),
+      func: () => filter("< 4", "5"),
+    },
+    {
+      element: (
+        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI id="6" variant="round" />4 - 8 Jam
+        </div>
+      ),
+      func: () => filter("4 < x < 8", "6"),
+    },
+    {
+      element: (
+        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI id="7" variant="round" />
+          Lebih dari 8 Jam
+        </div>
+      ),
+      func: () => filter("> 8", "7"),
+    },
+  ];
+
   return (
     <>
       <HeaderLayout />
@@ -164,7 +139,7 @@ export const ProductsPage = () => {
                   </div>
                 }
                 titleClassName="text-[#3ECF4C]"
-                content={categoryContent}
+                content={durasiContent}
                 contentClassName="text-[#3A3541AD] hover:text-[#3ECF4C] hover:text-decoration-none"
               />
             </div>
@@ -185,7 +160,7 @@ export const ProductsPage = () => {
               <img className="absolute right-3 top-[9px]" src="/assets/search.png" />
             </div>
           </div>
-          <ShowProductComponent contents={contents} />
+          <ShowProductComponent contents={data} />
           <PaginationUI />
         </div>
       </div>

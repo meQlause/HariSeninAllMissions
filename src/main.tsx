@@ -5,10 +5,8 @@ import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <>
-      <div className="container-full">
-        <App />
-      </div>
-    </>
+    <div className="container-full">
+      <App />
+    </div>
   </StrictMode>
 );

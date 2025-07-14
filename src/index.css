@@ -560,6 +560,10 @@ video {
   pointer-events: none;
 }
 
+.static{
+  position: static;
+}
+
 .fixed{
   position: fixed;
 }
@@ -653,8 +657,16 @@ video {
   margin-bottom: 1.25rem;
 }
 
+.mb-1{
+  margin-bottom: 0.25rem;
+}
+
 .mb-3{
   margin-bottom: 0.75rem;
+}
+
+.mb-4{
+  margin-bottom: 1rem;
 }
 
 .mb-5{
@@ -681,8 +693,8 @@ video {
   margin-top: 0.5rem;
 }
 
-.mt-20{
-  margin-top: 5rem;
+.mt-3{
+  margin-top: 0.75rem;
 }
 
 .mt-4{
@@ -713,6 +725,10 @@ video {
   display: grid;
 }
 
+.\!contents{
+  display: contents !important;
+}
+
 .contents{
   display: contents;
 }
@@ -725,8 +741,12 @@ video {
   height: 2.5rem;
 }
 
-.h-3{
-  height: 0.75rem;
+.h-2{
+  height: 0.5rem;
+}
+
+.h-4{
+  height: 1rem;
 }
 
 .h-5{
@@ -794,8 +814,8 @@ video {
   width: 5rem;
 }
 
-.w-3{
-  width: 0.75rem;
+.w-4{
+  width: 1rem;
 }
 
 .w-5{
@@ -816,10 +836,6 @@ video {
 
 .w-\[20px\]{
   width: 20px;
-}
-
-.w-\[351px\]{
-  width: 351px;
 }
 
 .w-\[40px\]{
@@ -846,10 +862,6 @@ video {
   min-width: 200px;
 }
 
-.min-w-\[350px\]{
-  min-width: 350px;
-}
-
 .max-w-24{
   max-width: 6rem;
 }
@@ -864,6 +876,10 @@ video {
 
 .max-w-40{
   max-width: 10rem;
+}
+
+.max-w-60{
+  max-width: 15rem;
 }
 
 .max-w-96{
@@ -884,6 +900,16 @@ video {
 
 .-translate-y-1\/2{
   --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.rotate-0{
+  --tw-rotate: 0deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.rotate-90{
+  --tw-rotate: 90deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -990,12 +1016,6 @@ video {
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
 }
 
-.space-y-4 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-}
-
 .overflow-hidden{
   overflow: hidden;
 }
@@ -1006,6 +1026,14 @@ video {
 
 .overflow-y-hidden{
   overflow-y: hidden;
+}
+
+.whitespace-nowrap{
+  white-space: nowrap;
+}
+
+.rounded-full{
+  border-radius: 9999px;
 }
 
 .rounded-lg{
@@ -1051,6 +1079,11 @@ video {
   border-top-width: 1px;
 }
 
+.border-\[\#1C8C2D\]{
+  --tw-border-opacity: 1;
+  border-color: rgb(28 140 45 / var(--tw-border-opacity, 1));
+}
+
 .border-\[\#3ECF4C\]{
   --tw-border-opacity: 1;
   border-color: rgb(62 207 76 / var(--tw-border-opacity, 1));
@@ -1071,6 +1104,16 @@ video {
   border-color: rgb(239 68 68 / var(--tw-border-opacity, 1));
 }
 
+.bg-\[\#3ECF4C\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(62 207 76 / var(--tw-bg-opacity, 1));
+}
+
+.bg-\[\#3ecf4c\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(62 207 76 / var(--tw-bg-opacity, 1));
+}
+
 .bg-\[\#E2FCD9CC\]{
   background-color: #E2FCD9CC;
 }
@@ -1078,6 +1121,11 @@ video {
 .bg-\[\#F4F5FA\]{
   --tw-bg-opacity: 1;
   background-color: rgb(244 245 250 / var(--tw-bg-opacity, 1));
+}
+
+.bg-\[\#e8fde1\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(232 253 225 / var(--tw-bg-opacity, 1));
 }
 
 .bg-\[\#f4f5fa\]{
@@ -1142,6 +1190,11 @@ video {
 .px-5{
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+
+.px-8{
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .px-\[10px\]{
@@ -1215,6 +1268,10 @@ video {
 
 .text-center{
   text-align: center;
+}
+
+.text-right{
+  text-align: right;
 }
 
 .font-sans{
@@ -1295,6 +1352,11 @@ video {
   color: rgb(62 207 76 / var(--tw-text-opacity, 1));
 }
 
+.text-\[\#3ecf4c\]{
+  --tw-text-opacity: 1;
+  color: rgb(62 207 76 / var(--tw-text-opacity, 1));
+}
+
 .text-\[\#4A505C\]{
   --tw-text-opacity: 1;
   color: rgb(74 80 92 / var(--tw-text-opacity, 1));
@@ -1303,6 +1365,11 @@ video {
 .text-\[\#7b7c7b\]{
   --tw-text-opacity: 1;
   color: rgb(123 124 123 / var(--tw-text-opacity, 1));
+}
+
+.text-\[\#F64920\]{
+  --tw-text-opacity: 1;
+  color: rgb(246 73 32 / var(--tw-text-opacity, 1));
 }
 
 .text-gray-400{
@@ -1362,10 +1429,34 @@ video {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
+.filter{
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.transition-all{
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .transition-opacity{
   transition-property: opacity;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.transition-transform{
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-150{
+  transition-duration: 150ms;
+}
+
+.duration-200{
+  transition-duration: 200ms;
 }
 
 .container-full{
@@ -1472,6 +1563,11 @@ footer {
   /* Firefox */
 }
 
+.hover\:bg-green-600:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 163 74 / var(--tw-bg-opacity, 1));
+}
+
 .hover\:bg-slate-100:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity, 1));
@@ -1518,10 +1614,6 @@ footer {
 @media (min-width: 768px){
   .md\:mt-5{
     margin-top: 1.25rem;
-  }
-
-  .md\:block{
-    display: block;
   }
 
   .md\:flex{
@@ -1598,6 +1690,34 @@ footer {
 }
 
 @media (min-width: 1024px){
+  .lg\:block{
+    display: block;
+  }
+
+  .lg\:flex{
+    display: flex;
+  }
+
+  .lg\:hidden{
+    display: none;
+  }
+
+  .lg\:w-\[351px\]{
+    width: 351px;
+  }
+
+  .lg\:min-w-\[350px\]{
+    min-width: 350px;
+  }
+
+  .lg\:flex-row{
+    flex-direction: row;
+  }
+
+  .lg\:gap-16{
+    gap: 4rem;
+  }
+
   .lg\:px-20{
     padding-left: 5rem;
     padding-right: 5rem;
@@ -1606,5 +1726,9 @@ footer {
   .lg\:px-40{
     padding-left: 10rem;
     padding-right: 10rem;
+  }
+
+  .lg\:pr-\[10vh\]{
+    padding-right: 10vh;
   }
 }

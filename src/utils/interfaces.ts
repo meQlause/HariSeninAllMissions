@@ -1,5 +1,5 @@
 import type { UseFormRegisterReturn } from "react-hook-form";
-import type { ButtonVariant, InputType } from "./types";
+import type { ButtonVariant, Content, InputType } from "./types";
 import type { ReactNode, FormHTMLAttributes } from "react";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -14,7 +14,7 @@ export interface DefaultLayoutProps {
 
 export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   className?: string;
-  onSubmit: () => void | Promise<void>;
+  onSubmit?: any;
 }
 
 export interface InputProps {
@@ -27,5 +27,5 @@ export interface InputProps {
 }
 
 export interface showProductProps {
-  contents: Record<string, any>[];
+  contents: Content[];
 }

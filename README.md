@@ -1,69 +1,51 @@
-# React + TypeScript + Vite
+# VideoBelajar App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This React application uses localStorage for data storage and authentication.
 
-Currently, two official plugins are available:
+## Authentication System
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### User Registration
 
-## Expanding the ESLint configuration
+- Users can register with their name, email, phone, and password
+- Registration data is stored in localStorage using the email as the key
+- Password is stored directly in localStorage and not its hash (for development purpose onlly)
+- Email validation prevents duplicate registrations
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### User Login
 
-```js
-export default tseslint.config([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+- Users authenticate using their registered email and password
+- The app checks localStorage for the stored password associated with the email
+- Authentication status is stored in localStorage with key "isAuth" set to "true"
+- Failed login attempts show confirmation dialogs
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Authentication State
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+- The `useAuth` hook manages authentication state
+- Checks localStorage for "isAuth" key on component mount
+- Returns boolean indicating if user is authenticated
+- Used throughout the app to conditionally render components
+
+### Logout
+
+- Users can logout via the header dropdown menu
+- Sets "isAuth" in localStorage to "false"
+- Redirects user to home page
+
+## localStorage Data Structure
+
+```
+localStorage:
+├── "user@email.com" → "userpassword" (user credentials)
+├── "isAuth" → "true" | "false" (authentication status)
+└── ... (other app data)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Security Notes
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+⚠️ **Important**: This implementation is for demonstration purposes only. In a production environment:
 
-export default tseslint.config([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+- Never store passwords in plain text
+- Use secure authentication tokens
+- Implement proper password hashing
+- Use secure HTTP-only cookies or JWT tokens
+- Consider using a backend server for authentication
