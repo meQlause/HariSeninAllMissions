@@ -12,17 +12,17 @@ import { useState } from "react";
 
 export const ProductsPage = () => {
   const [data, setData] = useState<Content[]>(getData().getRandomizeData(8).data);
-  
+
   const filter = (filter: string, id: string) => {
     console.log(filter);
     setData(getData().getRandomizeData(8).data);
     document.getElementById(id)?.click();
   };
 
-  const categoryContent: CategoryContent[] = [
+  const categoryContent1: CategoryContent[] = [
     {
       element: (
-        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+        <div className="ml-2 flex flex-row items-center justify-start gap-5">
           <CheckboxUI id="1" />
           Pemasaran
         </div>
@@ -31,7 +31,7 @@ export const ProductsPage = () => {
     },
     {
       element: (
-        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+        <div className="ml-2 flex flex-row items-center justify-start gap-5">
           <CheckboxUI id="2" />
           Digital & Teknologi
         </div>
@@ -40,7 +40,7 @@ export const ProductsPage = () => {
     },
     {
       element: (
-        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+        <div className="ml-2 flex flex-row items-center justify-start gap-5">
           <CheckboxUI id="3" />
           Pengembangan Diri
         </div>
@@ -49,7 +49,7 @@ export const ProductsPage = () => {
     },
     {
       element: (
-        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+        <div className="ml-2 flex flex-row items-center justify-start gap-5">
           <CheckboxUI id="4" />
           Manajemen Bisnis
         </div>
@@ -58,32 +58,71 @@ export const ProductsPage = () => {
     },
   ];
 
+  const categoryContent2: CategoryContent[] = [
+    {
+      element: (
+        <div className="ml-2 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI id="5" />
+          Pemasaran
+        </div>
+      ),
+      func: () => filter("pemasaran", "5"),
+    },
+    {
+      element: (
+        <div className="ml-2 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI id="6" />
+          Digital & Teknologi
+        </div>
+      ),
+      func: () => filter("digital dan teknologi", "6"),
+    },
+    {
+      element: (
+        <div className="ml-2 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI id="7" />
+          Pengembangan Diri
+        </div>
+      ),
+      func: () => filter("pengembangan diri", "7"),
+    },
+    {
+      element: (
+        <div className="ml-2 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI id="8" />
+          Manajemen Bisnis
+        </div>
+      ),
+      func: () => filter("manajemen bisnis", "8"),
+    },
+  ];
+
   const durasiContent: CategoryContent[] = [
     {
       element: (
-        <div className="ml-1 flex flex-row items-center justify-start gap-5">
-          <CheckboxUI id="5" variant="round" />
+        <div className="ml-2 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI id="9" variant="round" />
           Kurang dari 4 Jam
         </div>
       ),
-      func: () => filter("< 4", "5"),
+      func: () => filter("< 4", "9"),
     },
     {
       element: (
-        <div className="ml-1 flex flex-row items-center justify-start gap-5">
-          <CheckboxUI id="6" variant="round" />4 - 8 Jam
+        <div className="ml-2 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI id="10" variant="round" />4 - 8 Jam
         </div>
       ),
-      func: () => filter("4 < x < 8", "6"),
+      func: () => filter("4 < x < 8", "10"),
     },
     {
       element: (
-        <div className="ml-1 flex flex-row items-center justify-start gap-5">
-          <CheckboxUI id="7" variant="round" />
+        <div className="ml-2 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI id="11" variant="round" />
           Lebih dari 8 Jam
         </div>
       ),
-      func: () => filter("> 8", "7"),
+      func: () => filter("> 8", "11"),
     },
   ];
 
@@ -106,7 +145,7 @@ export const ProductsPage = () => {
                   </div>
                 }
                 titleClassName="text-[#3ECF4C]"
-                content={categoryContent}
+                content={categoryContent1}
                 contentClassName="text-[#3A3541AD] hover:text-[#3ECF4C] hover:text-decoration-none"
               />
             </div>
@@ -121,7 +160,7 @@ export const ProductsPage = () => {
                   </div>
                 }
                 titleClassName="text-[#3ECF4C]"
-                content={categoryContent}
+                content={categoryContent2}
                 contentClassName="text-[#3A3541AD] hover:text-[#3ECF4C] hover:text-decoration-none"
               />
             </div>

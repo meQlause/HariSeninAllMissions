@@ -18,7 +18,7 @@ export const CategoryComponent = ({
 
   return (
     <>
-      <div className={`grid w-full ${width} gap-0 ${showCategory ? "gap-2" : "gap-0"}`}>
+      <div className={`grid w-full ${width} gap-3`}>
         <div
           className="flex cursor-pointer items-center justify-between md:cursor-default"
           onClick={handleCategoryToggle}
