@@ -21,7 +21,7 @@ export const CategoryComponent: React.FC<CategoryProps> = ({
 
   return (
     <>
-      <div className={`grid w-full ${width} gap-0 ${showCategory ? "gap-2" : "gap-0"}`}>
+      <div className={`grid w-full ${width} gap-3`}>
         <div
           className={`flex cursor-pointer items-center ${titleClassName} justify-between ${!forceShow && "md:cursor-default"}`}
           onClick={handleCategoryToggle}

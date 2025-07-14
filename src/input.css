@@ -39,17 +39,21 @@ footer {
 }
 
 .divider {
-  display: flex;
-  align-items: center;
-  text-align: center;
   margin: 5px 0;
+}
+
+.divider-horizontal {
+  width: 100%;
+}
+
+.divider-vertical {
+  height: 100%;
 }
 
 .divider::before,
 .divider::after {
   content: "";
   flex: 1;
-  border-bottom: 1px solid #ccc;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

@@ -29,6 +29,8 @@ export type ImageProps = {
 };
 
 export type DividerProps = {
+  orientation?: "horizontal" | "vertical";
+  isHide?: boolean;
   width?: string;
   color?: string;
   thick?: string;

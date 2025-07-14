@@ -9,6 +9,7 @@ import { paymentMethodPage } from "./pages/paymentMethod";
 import { paymentPage } from "./pages/payment";
 import { paymentCompletePage } from "./pages/paymentComplete";
 import { ResetPaymentLayout } from "./layouts/resetPayment";
+import { OrderPage } from "./pages/order";
 
 export const App = () => {
   return (
@@ -25,6 +26,7 @@ export const App = () => {
         <Route path="/select-payment-method/:id" Component={paymentMethodPage}></Route>
         <Route path="/payment/:payment/:id" Component={paymentPage}></Route>
         <Route path="/payment-completed" Component={paymentCompletePage}></Route>
+        <Route path="/my-orders" Component={OrderPage}></Route>
       </Routes>
     </Router>
   );
