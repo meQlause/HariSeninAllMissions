@@ -49,3 +49,17 @@ localStorage:
 - Implement proper password hashing
 - Use secure HTTP-only cookies or JWT tokens
 - Consider using a backend server for authentication
+
+## Pesanan Saya (My Orders) Page
+
+- in this Mission i added additional page of pesanan-saya
+
+## State Management Migration
+
+- The application has migrated from Zustand to Redux for state management.
+- Redux is now used throughout the app to manage global state.
+
+## Firebase Database Design (Important)
+
+⚠️ **Important**: The Firebase database and backend implementation in this project are designed solely to fulfill the mission requirements and are **not suitable for production use**.
+
