@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { DefaultLayout } from "../layouts/default";
-import { usePaymentStepStore } from "../stores/usePaymentStepStore";
-import type { CardDetailsProp } from "../utils/types";
 import { ButtonUI } from "./UIs/button";
 import { useAuth } from "../services/hooks/useAuth";
 import { useAddPendingTx } from "../services/api/addPendingData";
+import type { RootState } from "../store";
+import { useSelector } from "react-redux";
+import type { CardDetailsProp } from "../utils/types";
 
 export const CardDetailsComponent: React.FC<CardDetailsProp> = ({ data }) => {
-  const { isActive } = usePaymentStepStore();
   const { addPendingTx } = useAddPendingTx();
   const { uid } = useAuth();
   const navigate = useNavigate();
+  const { isActive } = useSelector((state: RootState) => state.paymentStep);
 
   const getDiscountPrice = (price: string, discount: number): string => {
     const priceInteger = Number(price.split(" ").at(-1)?.slice(0, -1)) * (discount / 100);

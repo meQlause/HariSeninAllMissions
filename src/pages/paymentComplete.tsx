@@ -1,11 +1,15 @@
 import { DefaultLayout } from "../layouts/default";
 import { HeaderLayout } from "../layouts/header";
 import { ButtonUI } from "../components/UIs/button";
-import { usePaymentStepStore } from "../stores/usePaymentStepStore";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "../store";
+import { nextStep } from "../slices/paymentStepSlice";
 
 export const paymentCompletePage = () => {
-  const { nextStep } = usePaymentStepStore();
-  nextStep();
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+
   return (
     <>
       <HeaderLayout />
@@ -22,7 +26,15 @@ export const paymentCompletePage = () => {
               Silakan cek email kamu untuk informasi lebih lanjut. Hubungi kami jika ada kendala.
             </p>
           </div>
-          <ButtonUI className="max-w-60">Lihat Detail Pesanan</ButtonUI>
+          <ButtonUI
+            onClick={() => {
+              dispatch(nextStep());
+              navigate("/pesanan-saya");
+            }}
+            className="max-w-60"
+          >
+            Lihat Detail Pesanan
+          </ButtonUI>
         </DefaultLayout>
       </div>
     </>

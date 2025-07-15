@@ -9,23 +9,26 @@ import { DividerUI } from "../components/UIs/divider";
 import { ButtonUI } from "../components/UIs/button";
 import { useEffect, useState } from "react";
 import { FooterLayout } from "../layouts/footer";
-import { usePaymentStepStore } from "../stores/usePaymentStepStore";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../store";
+import { nextStep, setActive } from "../slices/paymentStepSlice";
 
 export const paymentMethodPage = () => {
   const { contents } = getData();
   const { id } = useParams<{ id: string }>();
   const [selectedPayment, setSelectedPayment] = useState<string>("");
   const navigate = useNavigate();
-  const { nextStep, setActive, isActive } = usePaymentStepStore();
+  const dispatch = useDispatch<AppDispatch>();
+  const { isActive } = useSelector((state: RootState) => state.paymentStep);
 
   useEffect(() => {
     if (!isActive) {
-      setActive(!isActive);
+      dispatch(setActive(!isActive));
     }
   }, []);
 
   const next = () => {
-    nextStep();
+    dispatch(nextStep());
     navigate(`/payment/${selectedPayment}/${id}`);
   };
 

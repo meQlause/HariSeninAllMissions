@@ -6,9 +6,11 @@ import { getData } from "../services/api/getData";
 import { DividerUI } from "../components/UIs/divider";
 import { ButtonUI } from "../components/UIs/button";
 import { FooterLayout } from "../layouts/footer";
-import { usePaymentStepStore } from "../stores/usePaymentStepStore";
 import { useAuth } from "../services/hooks/useAuth";
 import { useAddOwnedProduct } from "../services/api/ownedProducts";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "../store";
+import { nextStep } from "../slices/paymentStepSlice";
 
 export const paymentPage = () => {
   const { contents } = getData();
@@ -16,7 +18,7 @@ export const paymentPage = () => {
   const { uid } = useAuth();
   const { putPendingTx } = useAddOwnedProduct();
   const navigate = useNavigate();
-  const { nextStep } = usePaymentStepStore();
+  const dispatch = useDispatch<AppDispatch>();
 
   const paymentImage: Record<string, any> = {
     bca: { image: "/assets/paymentMethods/BCA.png", name: "BCA" },
@@ -53,7 +55,7 @@ export const paymentPage = () => {
   const addOwnedProducts = () => {
     if (uid) {
       putPendingTx(uid, String(data.id));
-      nextStep();
+      dispatch(nextStep());
       navigate(`/payment-completed`);
     }
   };

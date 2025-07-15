@@ -26,7 +26,7 @@ export const App = () => {
         <Route path="/select-payment-method/:id" Component={paymentMethodPage}></Route>
         <Route path="/payment/:payment/:id" Component={paymentPage}></Route>
         <Route path="/payment-completed" Component={paymentCompletePage}></Route>
-        <Route path="/my-orders" Component={OrderPage}></Route>
+        <Route path="/pesanan-saya" Component={OrderPage}></Route>
       </Routes>
     </Router>
   );

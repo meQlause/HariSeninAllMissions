@@ -2,7 +2,6 @@ import { TextInput } from "../components/UIs/input";
 import { DefaultLayout } from "../layouts/default";
 import { FooterLayout } from "../layouts/footer";
 import { HeaderLayout } from "../layouts/header";
-import { getData } from "../services/api/getData";
 import { useEffect, useRef, useState } from "react";
 import { DividerUI } from "../components/UIs/divider";
 import { mousePointerTracking, touchTracking } from "../utils/funtions";
@@ -11,7 +10,6 @@ import { useAuth } from "../services/hooks/useAuth";
 import { MyOrderListComponent } from "../components/myOrder";
 
 export const OrderPage = () => {
-  const { contents } = getData();
   const { uid } = useAuth();
   const ulRef = useRef<HTMLUListElement>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("Semua Pesanan");
@@ -29,9 +27,6 @@ export const OrderPage = () => {
 
     pollData();
   }, [uid]);
-
-  console.log(data);
-  if (!contents) return <>Error</>;
 
   return (
     <>

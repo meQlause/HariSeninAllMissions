@@ -2,15 +2,16 @@ import { useState } from "react";
 import { useAuth } from "../services/hooks/useAuth";
 import { ButtonUI } from "../components/UIs/button";
 import { useNavigate } from "react-router-dom";
-import { usePaymentStepStore } from "../stores/usePaymentStepStore";
 import { useIsMobile } from "../services/hooks/useIsMobile";
+import { useSelector } from "react-redux";
+import type { RootState } from "../store";
 
 export const HeaderLayout = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const isMobile = useIsMobile();
   const { isAuthenticated } = useAuth();
-  const { currentStep, isActive } = usePaymentStepStore();
   const navigate = useNavigate();
+  const { isActive, currentStep } = useSelector((state: RootState) => state.paymentStep);
 
   const renderStepContent = () => {
     switch (currentStep) {
@@ -111,7 +112,7 @@ export const HeaderLayout = () => {
               Kelas saya
             </div>
             <div
-              onClick={() => setShowDropdown(!showDropdown)}
+              onClick={() => navigate("/pesanan-saya")}
               className="border-b p-4 hover:bg-slate-100"
             >
               Pesanan saya

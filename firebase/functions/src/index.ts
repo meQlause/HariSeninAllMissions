@@ -81,18 +81,20 @@ app.delete("/removePendingTx", async (req, res) => {
 
     const txData = pendingDoc.data();
 
-    await db
-      .collection("tx_history")
-      .doc(userId)
-      .set(
-        {
-          data: FieldValue.arrayUnion({
-            ...txData,
-            removedAt: new Date(),
-          }),
-        },
-        { merge: true }
-      );
+    if (txData) {
+      await db
+        .collection("tx_history")
+        .doc(userId)
+        .set(
+          {
+            data: FieldValue.arrayUnion({
+              ...txData,
+              removedAt: new Date(),
+            }),
+          },
+          { merge: true }
+        );
+    }
 
     await pendingDocRef.delete();
 
@@ -116,6 +118,28 @@ app.put("/addOwnedProduct", async (req, res) => {
       res.status(400).send("userId and productId are required");
       return;
     }
+
+    const pendingDocRef = db.collection("pending_txs").doc(userId);
+    const pendingDoc = await pendingDocRef.get();
+
+    const txData = pendingDoc.data();
+
+    if (txData) {
+      await db
+        .collection("tx_history")
+        .doc(userId)
+        .set(
+          {
+            data: FieldValue.arrayUnion({
+              ...txData,
+              removedAt: new Date(),
+            }),
+          },
+          { merge: true }
+        );
+    }
+
+    await pendingDocRef.delete();
 
     await db
       .collection("owned_products")
