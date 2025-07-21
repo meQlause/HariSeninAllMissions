@@ -53,14 +53,6 @@ docker volume rm [volume_name]
 docker volume ls
 ```
 
-## 📁 File Structure
-
-Mission9/
-├── init/
-│ └── init.sql # SQL script to initialize schema
-├── docker-compose.yml # PostgreSQL container config
-└── README.md
-
 ## 📝 Notes
 
 - The SQL script creates tables like:
@@ -121,7 +113,7 @@ exit
 
 ## 📊 Optional: pgAdmin GUI Access
 
-You can uncomment the pgadmin's section your `docker.yml` to enable [pgAdmin](https://www.pgadmin.org/):
+You can uncomment the pgadmin's section your `docker.yml` to enable [pgAdmin](https://www.pgadmin.org/), and re run the docker compose:
 
 ### 1. Open pgAdmin in Your Browser
 
@@ -142,7 +134,7 @@ Login with:
 2. Under the **General** tab:
    - Name: `Mission9 DB` (or any name you prefer)
 3. Under the **Connection** tab:
-   - **Host**: `db` *(must match the service name in `docker-compose.yml`)*
+   - **Host**: `db` _(must match the service name in `docker-compose.yml`)_
    - **Port**: `5432`
    - **Username**: `admin`
    - **Password**: `admin`
