@@ -9,6 +9,7 @@ Each mission was originally submitted in its own GitHub repository and has now b
 
 All missions are organized inside the `missions/` folder:
 
+```
 missions/
 ├── Mission3/
 ├── Mission4/
@@ -18,6 +19,7 @@ missions/
 ├── Mission8/
 ├── Mission9/
 └── Mission11/
+```
 
 Each folder corresponds to one individual assignment given by Harisenin.
 
