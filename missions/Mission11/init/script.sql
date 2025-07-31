@@ -13,18 +13,6 @@ INSERT INTO kategori_kelas (kategori) VALUES
   ('Data Science'),
   ('Personal Development');
 
--- Seed data for kategori_kelas
-
-INSERT INTO kategori_kelas (kategori) VALUES
-  ('Design'),
-  ('Development'),
-  ('Programming'),
-  ('Marketing'),
-  ('Business'),
-  ('Photography'),
-  ('Data Science'),
-  ('Personal Development');
-
 -- Seed data for tutor
 
 INSERT INTO tutor (nama, profil, profil_kerja) VALUES

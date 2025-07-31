@@ -48,6 +48,10 @@ export class QueryBuilder {
         return this;
     }
 
+    joinWith(tableName: string, fieldName: string) {
+        this.query += ` INNER JOIN ${tableName} ON ${fieldName}`;
+        return this;
+    }
 
     getQuery(): string {
         const finalQuery = this.query;

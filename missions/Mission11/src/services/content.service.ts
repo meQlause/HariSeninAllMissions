@@ -2,7 +2,6 @@ import pool from '../config/db';
 import { addCourseDTO } from '../dtos/addCourse.dto';
 import { QueryBuilder } from '../utils/queryBuilder';
 import { QueryParam } from '../utils/types';
-import { Request } from 'express';
 
 export const getAllProducts = async () => {
     const result = await pool.query('SELECT * FROM produk');
@@ -91,6 +90,11 @@ export const searchProduct = async (data: QueryParam | undefined) => {
 const buildQuerySearch = (data: QueryParam): string => {
     const query = new QueryBuilder("produk")
 
+    if (Array.isArray(data.studi) && data.studi.length > 0) {
+        query.joinWith("kategori_kelas", "produk.kategori_kelas = kategori_kelas.id");
+        query.filterEquals("kategori_kelas.kategori", data.studi)
+    }
+
     if (data.search) {
         query.fullTextSearch("search_tsv", data.search)
     }
@@ -109,10 +113,6 @@ const buildQuerySearch = (data: QueryParam): string => {
         } else {
             query.filterBetween("harga", "0", String(data.harga[0]))
         }
-    }
-
-    if (Array.isArray(data.studi) && data.studi.length > 0) {
-        query.filterEquals("studi", data.studi);
     }
 
     if (data.filter) {
